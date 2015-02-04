@@ -12,8 +12,15 @@ class list(object):
 
         def insert(self, val):
             #make a new node with the Value
-            newNode = Node(val, self.head)
+            new_node = Node(val, self.head)
             #make its next value equal to the head
             #make this new node the head
-            self.head = newNode
-        
+            self.head = new_node
+
+        def pop(self):
+            #make a node that has the value of the head
+            head_val = self.head.val
+            #make the head's head the head
+            self.head = self.head.next
+            return head_val
+
