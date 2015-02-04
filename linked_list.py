@@ -24,3 +24,13 @@ class list(object):
             self.head = self.head.next
             return head_val
 
+        def size(self):
+            #iterate through each and count.
+            iter_node = self.head
+            count = 0
+            while iter_node.next is not None:
+                count += 1
+                iter_node = iter_node.next
+            return count
+
+        
