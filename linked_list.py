@@ -45,5 +45,23 @@ class list(object):
             #if we find the value, return the node
             #if we don't find it, return None.
 
+        def remove(self, node):
+            #search for the node to be removed
+            iter_node = self.head
+            if iter_node == node:
+                self.head = self.head.next
+                return
+            while iter_node is not None:
+                if iter_node.next == node:
+                    iter_node.next == iter_node.next.next
+                    return
+                iter_node = iter_node.next
+            #if we don't find it, return None
+            #if we do find it, remove it
+
+
+
+
+
 
 
