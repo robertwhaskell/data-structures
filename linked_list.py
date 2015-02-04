@@ -28,9 +28,22 @@ class list(object):
             #iterate through each and count.
             iter_node = self.head
             count = 0
-            while iter_node.next is not None:
+            while iter_node is not None:
                 count += 1
                 iter_node = iter_node.next
             return count
 
-        
+        def search(self, val):
+            #iterate through the list
+            iter_node = self.head
+            while iter_node is not None:
+                if iter_node.val == val:
+                    return iter_node
+                iter_node = iter_node.next
+            return None
+            #check each value
+            #if we find the value, return the node
+            #if we don't find it, return None.
+
+
+
