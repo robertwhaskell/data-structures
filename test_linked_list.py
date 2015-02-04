@@ -12,10 +12,8 @@ n9 = linked_list.Node(0, None)
 
 mylist = linked_list.list(n1)
 
-print mylist.display()
-
 mylist.insert(True)
-mylist.insert(5)
+mylist.insert(500)
 mylist.insert("")
 mylist.insert("Thing")
 mylist.insert(None)
@@ -27,6 +25,17 @@ assert mylist.pop() is 1000
 
 assert mylist.head.val is None
 
+assert mylist.size() is 6
 
+assert mylist.search(True).val is True
 
+assert mylist.search("doesn't exist") is None
 
+mylist.remove(n1)
+mylist.remove(n8)
+
+assert mylist.search(n1.val) is None
+
+assert mylist.size() is 5
+print mylist.display()
+assert mylist.display() is (None, 'Thing', '', 500, True)
