@@ -1,8 +1,9 @@
 import linked_list
 
+# test 1 - basic stuff. see if the methods work under normal duress.
+
 n1 = linked_list.Node(5, None)
 n8 = linked_list.Node(53, None)
-# test 1
 
 mylist = linked_list.list(n1)
 mylist.insert(True)
@@ -33,9 +34,10 @@ assert mylist.size() is 5
 
 assert mylist.display() == (None, 'Thing', '', 500, True,)
 
+# test 2 - more complicated, mostly checking to see if an empty
+# messes anything up.
 
 # insertion into an empty list
-
 mylist2 = linked_list.list(None)
 mylist2.insert(67)
 assert mylist2.head.val is 67
@@ -68,10 +70,7 @@ mylist2.remove(True)
 mylist2.remove(5)
 mylist2.remove("dkdkda;fdj")
 
-#insert a tuple
+# insert a tuple
 
 mylist2.insert((5, "blah", True))
 assert mylist2.display() == ((5, 'blah', True),)
-print mylist2
-
-print mylist
