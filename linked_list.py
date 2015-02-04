@@ -59,6 +59,15 @@ class list(object):
             #if we don't find it, return None
             #if we do find it, remove it
 
+        def __str__(self):
+            #iterate though the list
+            tup = ()
+            iter_node = self.head
+            while iter_node is not None:
+                tup = tup + (iter_node.val,)
+            return tup
+
+
 
 
 
