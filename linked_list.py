@@ -19,10 +19,11 @@ class list(object):
 
     def pop(self):
         #make a node that has the value of the head
-        head_val = self.head.val
-        #make the head's head the head
-        self.head = self.head.next
-        return head_val
+        if self.head is not None:
+            head_val = self.head.val
+            #make the head's head the head
+            self.head = self.head.next
+            return head_val
 
     def size(self):
         #iterate through each and count.
@@ -67,6 +68,14 @@ class list(object):
             tup = tup + (iter_node.val,)
             iter_node = iter_node.next
         return tup
+
+    def __str__(self):
+        tup = ()
+        iter_node = self.head
+        while iter_node is not None:
+            tup = tup + (iter_node.val,)
+            iter_node = iter_node.next
+        return str(tup)
 
 
 

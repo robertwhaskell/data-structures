@@ -1,16 +1,8 @@
 import linked_list
 
 n1 = linked_list.Node(5, None)
-n2 = linked_list.Node(23948.398, None)
-n3 = linked_list.Node(True, None)
-n4 = linked_list.Node(False, None)
-n5 = linked_list.Node("Hey there!", None)
-n6 = linked_list.Node("sdkfsdlfh2[03u", None)
-n7 = linked_list.Node("", None)
-n8 = linked_list.Node(None, None)
-n9 = linked_list.Node(0, None)
-
-#test 1
+n8 = linked_list.Node(53, None)
+# test 1
 
 mylist = linked_list.list(n1)
 mylist.insert(True)
@@ -41,3 +33,45 @@ assert mylist.size() is 5
 
 assert mylist.display() == (None, 'Thing', '', 500, True,)
 
+
+# insertion into an empty list
+
+mylist2 = linked_list.list(None)
+mylist2.insert(67)
+assert mylist2.head.val is 67
+
+# remove only node in list
+
+rmnode = mylist2.search(67)
+mylist2.remove(rmnode)
+assert mylist2.head is None
+
+# remove node not in list
+
+mylist2.remove(rmnode)
+
+# pop from empty list
+
+mylist2.pop()
+
+# size if nothing
+
+assert mylist2.size() is 0
+
+# display an empty list
+
+assert mylist2.display() == ()
+
+# remove something weird
+
+mylist2.remove(True)
+mylist2.remove(5)
+mylist2.remove("dkdkda;fdj")
+
+#insert a tuple
+
+mylist2.insert((5, "blah", True))
+assert mylist2.display() == ((5, 'blah', True),)
+print mylist2
+
+print mylist
