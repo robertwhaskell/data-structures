@@ -10,8 +10,9 @@ n7 = linked_list.Node("", None)
 n8 = linked_list.Node(None, None)
 n9 = linked_list.Node(0, None)
 
-mylist = linked_list.list(n1)
+#test 1
 
+mylist = linked_list.list(n1)
 mylist.insert(True)
 mylist.insert(500)
 mylist.insert("")
@@ -37,5 +38,6 @@ mylist.remove(n8)
 assert mylist.search(n1.val) is None
 
 assert mylist.size() is 5
-print mylist.display()
-assert mylist.display() is (None, 'Thing', '', 500, True)
+
+assert mylist.display() == (None, 'Thing', '', 500, True,)
+
