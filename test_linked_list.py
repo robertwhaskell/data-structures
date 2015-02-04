@@ -3,9 +3,12 @@ import linked_list
 # test 1 - basic stuff. see if the methods work under normal duress.
 
 n1 = linked_list.Node(5, None)
+assert n1.val is 5
+assert n1.next == None
 n8 = linked_list.Node(53, None)
 
 mylist = linked_list.list(n1)
+assert mylist.head is not None
 mylist.insert(True)
 mylist.insert(500)
 mylist.insert("")
