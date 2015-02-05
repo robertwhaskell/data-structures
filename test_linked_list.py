@@ -1,79 +1,88 @@
 import linked_list
+import pytest
 
-# test 1 - basic stuff. see if the methods work under normal duress.
 
-n1 = linked_list.Node(5, None)
-assert n1.val is 5
-assert n1.next == None
-n8 = linked_list.Node(53, None)
+@pytest.fixture
+def fix_populated_list(request):
+    full_list = linked_list.list()
+    full_list.insert(True)
+    full_list.insert(500)
+    full_list.insert("")
+    full_list.insert("Thing")
+    full_list.insert(None)
+    full_list.insert(1000)
+    return full_list
 
-mylist = linked_list.list(n1)
-assert mylist.head is not None
-mylist.insert(True)
-mylist.insert(500)
-mylist.insert("")
-mylist.insert("Thing")
-mylist.insert(None)
-mylist.insert(1000)
 
-assert mylist.head.val is 1000
+@pytest.fixture
+def fix_empty_list(request):
+    empty_list = linked_list.list()
+    return empty_list
 
-assert mylist.pop() is 1000
 
-assert mylist.head.val is None
+def test_Node():
+    test1 = linked_list.Node()
+    assert test1.val is None
+    assert test1.next is None
+    test2 = linked_list.Node(5)
+    assert test2.val == 5
+    assert test2.next is None
+    test3 = linked_list.Node(5, test1)
+    assert test3.val == 5
+    assert test3.next == test1
 
-assert mylist.size() is 6
 
-assert mylist.search(True).val is True
+def test_list():
+    testnode = linked_list.Node(5)
+    test1 = linked_list.list()
+    assert test1.size() == 0
+    assert test1.head is None
+    test2 = linked_list.list(testnode)
+    assert test2.size() == 1
+    assert test2.head == testnode
 
-assert mylist.search("doesn't exist") is None
 
-mylist.remove(n1)
-mylist.remove(n8)
+def test_empty_list(fix_empty_list):
+    assert fix_empty_list.size() == 0
 
-assert mylist.search(n1.val) is None
 
-assert mylist.size() is 5
+def test_pop(fix_empty_list, fix_populated_list):
+    fix_empty_list.pop()
+    assert fix_populated_list.pop() == 1000
+    assert fix_populated_list.size() == 5
+    while fix_populated_list.size() > 1:
+        fix_populated_list.pop()
+    assert fix_populated_list.pop() is True
+    assert fix_populated_list.pop() == "No head"
 
-assert mylist.display() == "(None, 'Thing', '', 500, True)"
 
-# test 2 - more complicated, mostly checking to see if an empty
-# messes anything up.
+def test_insert(fix_empty_list, fix_populated_list):
+    assert fix_empty_list.size() == 0
+    fix_empty_list.insert("Thingo")
+    assert fix_empty_list.size() == 1
+    assert fix_empty_list.pop() == "Thingo"
+    assert fix_populated_list.size() == 6
+    fix_populated_list.insert("Other Thingo")
+    assert fix_populated_list.size() == 7
+    assert fix_populated_list.pop() == "Other Thingo"
 
-# insertion into an empty list
-mylist2 = linked_list.list(None)
-mylist2.insert(67)
-assert mylist2.head.val is 67
 
-# remove only node in list
+def test_search(fix_empty_list, fix_populated_list):
+    assert fix_empty_list.search("Doesn't exist") is None
+    assert fix_populated_list.search("doesn't exist") is None
+    test_node = fix_populated_list.search(500)
+    assert test_node.val == 500
 
-rmnode = mylist2.search(67)
-mylist2.remove(rmnode)
-assert mylist2.head is None
 
-# remove node not in list
+def test_remove(fix_empty_list, fix_populated_list):
+    test_node = fix_populated_list.search(500)
+    fix_populated_list.remove(test_node)
+    assert fix_populated_list.search(500) is None
+    assert fix_populated_list.size() == 5
+    assert fix_populated_list.remove("Doesn't Exist") is None
+    assert fix_empty_list.remove(True) is None
 
-mylist2.remove(rmnode)
 
-# pop from empty list
-
-mylist2.pop()
-
-# size if nothing
-
-assert mylist2.size() is 0
-
-# display an empty list
-
-assert mylist2.display() == "()"
-
-# remove something weird
-
-mylist2.remove(True)
-mylist2.remove(5)
-mylist2.remove("dkdkda;fdj")
-
-# insert a tuple
-
-mylist2.insert((5, "blah", True))
-assert mylist2.display() == "((5, 'blah', True))"
+def test_display(fix_empty_list, fix_populated_list):
+    assert fix_empty_list.display() == "()"
+    assert fix_populated_list.display() == "(1000, None, 'Thing', '', 500, True)"

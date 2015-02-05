@@ -1,5 +1,5 @@
 class Node(object):
-    def __init__(self, val, next=None):
+    def __init__(self, val=None, next=None):
         self.val = val
         self.next = next
 
@@ -17,13 +17,16 @@ class list(object):
     def pop(self):
         # make a node that has the value of the head
         # make the head's head the head
-        if self.head is not None:
+        # if self.head is not None:
+        try:
             head_val = self.head.val
             self.head = self.head.next
             return head_val
+        except AttributeError:
+            return "No head"
 
     def size(self):
-        #iterate through each and add to count.
+        # iterate through each and add to count.
         iter_node = self.head
         count = 0
         while iter_node is not None:
