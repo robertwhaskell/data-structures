@@ -48,4 +48,5 @@ def test_pop(fix_empty_stack, fix_populated_stack):
     assert fix_populated_stack.pop() is True
     assert fix_populated_stack.pop() == "Hello"
     assert fix_populated_stack.pop() == 5
-    assert fix_populated_stack.pop() == "Stack empty"
+    with pytest.raises(AttributeError):
+        fix_populated_stack.pop()

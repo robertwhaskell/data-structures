@@ -17,4 +17,4 @@ class Stack(object):
             self.head = self.head.next
             return head_val
         except AttributeError:
-            return "Stack empty"
+            raise AttributeError("Empty Stack")
