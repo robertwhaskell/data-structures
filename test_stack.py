@@ -1,6 +1,7 @@
 import pytest
 from stack import Node, Stack
 
+
 @pytest.fixture()
 def fix_empty_stack(request):
     empty_stack = Stack()
@@ -13,6 +14,7 @@ def fix_populated_stack(request):
     populated_stack.push(5)
     populated_stack.push("Hello")
     populated_stack.push(True)
+    return populated_stack
 
 
 def test_Node():
@@ -34,3 +36,16 @@ def test_list():
     test2 = Stack(testnode)
     assert test2.head == testnode
 
+
+def test_push(fix_empty_stack, fix_populated_stack):
+    fix_empty_stack.push("Thingo")
+    assert fix_empty_stack.pop() == "Thingo"
+    fix_populated_stack.push("Other Thingo")
+    assert fix_populated_stack.pop() == "Other Thingo"
+
+
+def test_pop(fix_empty_stack, fix_populated_stack):
+    assert fix_populated_stack.pop() is True
+    assert fix_populated_stack.pop() == "Hello"
+    assert fix_populated_stack.pop() == 5
+    assert fix_populated_stack.pop() == "Stack empty"
