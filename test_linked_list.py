@@ -35,7 +35,7 @@ assert mylist.search(n1.val) is None
 
 assert mylist.size() is 5
 
-assert mylist.display() == (None, 'Thing', '', 500, True,)
+assert mylist.display() == "(None, 'Thing', '', 500, True)"
 
 # test 2 - more complicated, mostly checking to see if an empty
 # messes anything up.
@@ -65,7 +65,7 @@ assert mylist2.size() is 0
 
 # display an empty list
 
-assert mylist2.display() == ()
+assert mylist2.display() == "()"
 
 # remove something weird
 
@@ -76,4 +76,4 @@ mylist2.remove("dkdkda;fdj")
 # insert a tuple
 
 mylist2.insert((5, "blah", True))
-assert mylist2.display() == ((5, 'blah', True),)
+assert mylist2.display() == "((5, 'blah', True))"

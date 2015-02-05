@@ -1,21 +1,18 @@
 class Node(object):
-    def __init__(self, val, next):
-        super(Node, self).__init__()
+    def __init__(self, val, next=None):
         self.val = val
         self.next = next
 
 
 class list(object):
-    def __init__(self, head):
-        super(list, self).__init__()
+    def __init__(self, head=None):
         self.head = head
 
     def insert(self, val):
         # make a new node with the Value
         # make its next value equal to the head
         # make this new node the head
-        new_node = Node(val, self.head)
-        self.head = new_node
+        self.head = Node(val, self.head)
 
     def pop(self):
         # make a node that has the value of the head
@@ -26,7 +23,7 @@ class list(object):
             return head_val
 
     def size(self):
-        # iterate through each and add to count.
+        #iterate through each and add to count.
         iter_node = self.head
         count = 0
         while iter_node is not None:
@@ -64,12 +61,19 @@ class list(object):
         # iterate though the list
         # add the values of each node
         # to the tuple, then display.
-        tup = ()
+        output_string = ""
         iter_node = self.head
-        while iter_node is not None:
-            tup = tup + (iter_node.val,)
+        while iter_node:
+            if isinstance(iter_node.val, str):
+                output_string += "'{}'"  .format(iter_node.val)
+            else:
+                output_string += "{}" .format(iter_node.val)
             iter_node = iter_node.next
-        return tup
+            if iter_node:
+                output_string += ", "
+            else:
+                return "({})" .format(output_string)
+        return "()"
 
     def __str__(self):
         return str(self.display())
