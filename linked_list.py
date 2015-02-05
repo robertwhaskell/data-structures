@@ -1,21 +1,19 @@
 class Node(object):
-    def __init__(self, val, next):
-        super(Node, self).__init__()
+    def __init__(self, val, next=None):
         self.val = val
         self.next = next
 
 
 class list(object):
-    def __init__(self, head):
-        super(list, self).__init__()
+    def __init__(self, head=None):
         self.head = head
+        list_size = 0
 
     def insert(self, val):
         # make a new node with the Value
         # make its next value equal to the head
         # make this new node the head
-        new_node = Node(val, self.head)
-        self.head = new_node
+        self.head = Node(val, self.head)
 
     def pop(self):
         # make a node that has the value of the head
