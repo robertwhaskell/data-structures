@@ -1,5 +1,6 @@
 def check_parentheses(string_to_test):
-    if not isinstance(string_to_test, unicode):
+    if not (isinstance(string_to_test, unicode) ^
+            isinstance(string_to_test, str)):
         raise TypeError
     else:
         count = 0
