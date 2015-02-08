@@ -18,18 +18,19 @@ def fix_populated_stack(request):
 
 
 def test_Node():
-    test1 = Node()
-    assert test1.val is None
-    assert test1.next is None
-    test2 = Node(5)
-    assert test2.val == 5
-    assert test2.next is None
-    test3 = Node(5, test1)
-    assert test3.val == 5
-    assert test3.next == test1
+    testnode = Node(5)
+    assert testnode.val == 5
+    assert testnode.next is None
 
 
-def test_list():
+def test_Node_with_next():
+    testnode = Node(5)
+    testnode2 = Node(6, testnode)
+    assert testnode2.val == 6
+    assert testnode2.next == testnode
+
+
+def test_Stack():
     testnode = Node(5)
     test1 = Stack()
     assert test1.head is None
