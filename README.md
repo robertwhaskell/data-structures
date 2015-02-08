@@ -3,6 +3,8 @@ Contains a number of classic data structures, implemented in python.
 This file contains:
 Singly linked list
     Data structure utilizing nodes
+    References for list:
+    http://blog.notdot.net/2010/07/Getting-unicode-right-in-Python for the attempt at using unicode strings.
 Stack
     Data structure utilizing nodes with a "First In, Last Out" 
     organization.
