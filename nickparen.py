@@ -1,5 +1,5 @@
-def check_parentheses(self, string_to_test):
-    if not isinstance(unicode, string_to_test):
+def check_parentheses(string_to_test):
+    if not isinstance(string_to_test, unicode):
         raise TypeError
     else:
         count = 0
@@ -10,3 +10,7 @@ def check_parentheses(self, string_to_test):
                 count -= 1
             if count < 0:
                 return -1
+        if count > 0:
+            return 1
+        if count == 0:
+            return 0
