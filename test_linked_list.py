@@ -20,16 +20,17 @@ def fix_empty_list(request):
     return empty_list
 
 
-def test_Node():
-    test1 = linked_list.Node()
-    assert test1.val is None
-    assert test1.next is None
-    test2 = linked_list.Node(5)
-    assert test2.val == 5
-    assert test2.next is None
-    test3 = linked_list.Node(5, test1)
-    assert test3.val == 5
-    assert test3.next == test1
+def test_Node_with_value():
+    testnode = linked_list.Node(5)
+    assert testnode.val == 5
+    assert testnode.next is None
+
+
+def test_Node_with_value_and_next():
+    nextnode = linked_list.Node(5)
+    testnode = linked_list.Node(6, nextnode)
+    assert testnode.val == 6
+    assert testnode.next == nextnode
 
 
 def test_list():
@@ -47,13 +48,15 @@ def test_empty_list(fix_empty_list):
 
 
 def test_pop(fix_empty_list, fix_populated_list):
-    fix_empty_list.pop()
+    with pytest.raises(ValueError):
+        fix_empty_list.pop()
     assert fix_populated_list.pop() == 1000
     assert fix_populated_list.size() == 5
     while fix_populated_list.size() > 1:
         fix_populated_list.pop()
     assert fix_populated_list.pop() is True
-    assert fix_populated_list.pop() == "No head"
+    with pytest.raises(ValueError):
+        fix_populated_list.pop()
 
 
 def test_insert(fix_empty_list, fix_populated_list):

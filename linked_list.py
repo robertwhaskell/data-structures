@@ -1,5 +1,5 @@
 class Node(object):
-    def __init__(self, val=None, next=None):
+    def __init__(self, val, next=None):
         self.val = val
         self.next = next
 
@@ -7,12 +7,16 @@ class Node(object):
 class list(object):
     def __init__(self, head=None):
         self.head = head
+        self.list_size = 0
+        if self.head:
+            self.list_size = 1
 
     def insert(self, val):
         # make a new node with the Value
         # make its next value equal to the head
         # make this new node the head
         self.head = Node(val, self.head)
+        self.list_size += 1
 
     def pop(self):
         # make a node that has the value of the head
@@ -21,18 +25,20 @@ class list(object):
         try:
             head_val = self.head.val
             self.head = self.head.next
+            self.list_size -= 1
             return head_val
         except AttributeError:
-            return "No head"
+            raise ValueError("No head in this list.")
 
     def size(self):
         # iterate through each and add to count.
-        iter_node = self.head
-        count = 0
-        while iter_node is not None:
-            count += 1
-            iter_node = iter_node.next
-        return count
+        # iter_node = self.head
+        # count = 0
+        # while iter_node is not None:
+        #     count += 1
+        #     iter_node = iter_node.next
+        # return count
+        return self.list_size
 
     def search(self, val):
         # iterate through the list
@@ -53,10 +59,12 @@ class list(object):
         iter_node = self.head
         if iter_node is node:
             self.head = self.head.next
+            self.list_size -= 1
             return
         while iter_node is not None:
             if iter_node.next is node:
                 iter_node.next = iter_node.next.next
+                self.list_size -= 1
                 return
             iter_node = iter_node.next
 
