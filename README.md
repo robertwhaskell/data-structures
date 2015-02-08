@@ -14,6 +14,11 @@ Stack
     node.
 Collaborations: Robert Haskell & Nick Draper (coders)
 References: Google, Google, Google, and also Wikipedia
+Proper Parenthetics
+    A test to make sure that parentheses are properly opened and closed.
+    Tells the user if the string is open(open parentheses are not closed),
+    balanced (equal numbers in the proper order), or broken (a closing paren
+    appears that didn't have an open one to match.)
 
 
     
