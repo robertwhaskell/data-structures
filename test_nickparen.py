@@ -26,9 +26,11 @@ def test_not_unicode():
     with pytest.raises(TypeError):
         check_parentheses(5)
 
+
 def test_no_parentheses():
     from nickparen import check_parentheses
     assert check_parentheses(u"foo") == 0
+
 
 def test_symbols_string_unicode():
     from nickparen import check_parentheses
