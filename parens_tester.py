@@ -23,7 +23,7 @@ def next_value(stack):
     return val
 
 
-def parens_tester(parens):
+def parens_tester(parens=''):
     init_stack = Stack()
     closed_stack = Stack()
     for paren in parens:

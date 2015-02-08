@@ -3,40 +3,42 @@ from parens_tester import parens_tester
 
 
 @pytest.fixture
+def empty_stack(request):
+    return parens_tester()
+
+
+@pytest.fixture
 def balanced_parens_stack(request):
-    p = parens_tester('()()()()()((()))')
-    return p
+    return parens_tester('()()()()()((()))')
 
 
 @pytest.fixture
 def balanced_parens_stack_simple(request):
-    p = parens_tester('()')
-    return p
+    return parens_tester('()')
 
 
 @pytest.fixture
 def open_parens_stack(request):
-    p = parens_tester('()()()()()((()))((()(')
-    return p
+    return parens_tester('()()()()()((()))((()(')
 
 
 @pytest.fixture
 def open_parens_stack_simple(request):
-    p = parens_tester('(')
-    return p
-
+    return parens_tester('(')
 
 
 @pytest.fixture
 def broken_parens_stack(request):
-    p = parens_tester('()()()()()((())))))')
-    return p
+    return parens_tester('()()()()()((())))))')
 
 
 @pytest.fixture
 def broken_parens_stack_simple(request):
-    p = parens_tester(')')
-    return p
+    return parens_tester(')')
+
+
+def test_empty_stack(empty_stack):
+    assert empty_stack == 0
 
 
 def test_balanced(balanced_parens_stack):
