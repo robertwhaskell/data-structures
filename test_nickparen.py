@@ -40,3 +40,9 @@ def test_symbols_string_unicode():
 def test_symbols_string_bytestring():
     from nickparen import check_parentheses
     assert check_parentheses("!#@$&^*)") == -1
+
+
+def test_multiple_words():
+    from nickparen import check_parentheses
+    assert check_parentheses(u"checking multiple words(with parentheses) to"
+        "make my mind feel better") == 0
