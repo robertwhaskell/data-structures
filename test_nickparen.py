@@ -1,5 +1,6 @@
 import pytest
 
+
 def test_best_case_balanced():
     from nickparen import check_parentheses
     assert check_parentheses(u'()') == 0
