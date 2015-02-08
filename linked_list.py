@@ -28,7 +28,7 @@ class list(object):
             self.list_size -= 1
             return head_val
         except AttributeError:
-            raise ValueError("No head in this list.")
+            raise ValueError(u"No head in this list.")
 
     def size(self):
         # iterate through each and add to count.
@@ -72,22 +72,25 @@ class list(object):
         # iterate though the list
         # add the values of each node
         # to the tuple, then display.
-        output_string = ""
+        output_string = u""
         iter_node = self.head
         while iter_node:
             if isinstance(iter_node.val, str):
-                output_string += "'{}'"  .format(iter_node.val)
+                convert = iter_node.val.decode('utf-8')
+                output_string = u"{}'{}'".format(output_string, convert)
+            elif isinstance(iter_node.val, unicode):
+                output_string = u"{}'{}'".format(output_string, iter_node.val)
             else:
-                output_string += "{}" .format(iter_node.val)
+                output_string = u"{}{}".format(output_string, iter_node.val)
             iter_node = iter_node.next
             if iter_node:
-                output_string += ", "
+                output_string = u"{}, ".format(output_string)
             else:
-                return "({})" .format(output_string)
-        return "()"
+                return u"({})".format(output_string)
+        return u"()"
 
     def __str__(self):
-        return str(self.display())
+        return str(self.display(), 'utf-8')
 
     def __repr__(self):
-        return str(self.display())
+        return str(self.display(), 'utf-8')

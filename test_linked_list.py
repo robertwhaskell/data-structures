@@ -88,4 +88,10 @@ def test_remove(fix_empty_list, fix_populated_list):
 
 def test_display(fix_empty_list, fix_populated_list):
     assert fix_empty_list.display() == "()"
-    assert fix_populated_list.display() == "(1000, None, 'Thing', '', 500, True)"
+    assert fix_populated_list.display() == ("(1000, None, 'Thing', "
+        "'', 500, True)")
+
+
+def test_unicode_characters(fix_empty_list):
+    fix_empty_list.insert(u"J\xf6rg")
+    fix_empty_list.display()
