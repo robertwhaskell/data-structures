@@ -9,7 +9,7 @@ def empty_stack(request):
 
 @pytest.fixture
 def balanced_parens_stack(request):
-    return parens_tester('()()()()()((()))')
+    return parens_tester('(a)dfs()()(df)()((()df))')
 
 
 @pytest.fixture
@@ -19,7 +19,7 @@ def balanced_parens_stack_simple(request):
 
 @pytest.fixture
 def open_parens_stack(request):
-    return parens_tester('()()()()()((()))((()(')
+    return parens_tester('()()()dsf()()((()))((()(dsfsdf')
 
 
 @pytest.fixture
@@ -29,7 +29,7 @@ def open_parens_stack_simple(request):
 
 @pytest.fixture
 def broken_parens_stack(request):
-    return parens_tester('()()()()()((())))))')
+    return parens_tester('dfsdf()()(df)()(sdf)((()f)))))')
 
 
 @pytest.fixture
