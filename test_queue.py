@@ -21,7 +21,7 @@ def test_enqueue(request):
 
 
 def test_dequeue(request, populated_queue):
-    populated_queue.dequeue()
+    assert populated_queue.dequeue() == 5
     assert populated_queue.head.val == "True"
     assert populated_queue.size == 3
 
