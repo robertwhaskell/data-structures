@@ -14,6 +14,13 @@ Stack
     is all. 
     A node contains a data value, along with a reference to the next
     node.
+Queue 
+    Data structure that push values into the back of list, then spits
+    them out of the front, in the order they were pushed.
+    Enqueue adds nodes to the back of the list
+    dequeue pops nodes off the top of the list
+    size checks the length of the queue
+     
 Collaborations: Robert Haskell & Nick Draper (coders)
 References: Google, Google, Google, and also Wikipedia
 
