@@ -1,5 +1,6 @@
 import pytest
 from queue import Queue
+from queue import Node
 
 
 @pytest.fixture
@@ -10,6 +11,10 @@ def populated_queue(request):
     q.enqueue(False)
     q.enqueue(" ")
     return q
+
+
+def test_Node(request):
+    assert Node(5).val == 5
 
 
 def test_Queue(request):
