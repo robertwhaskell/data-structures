@@ -26,22 +26,42 @@ class DL_List(object):
 
     def remove(self, val):
         iter_node = self.head
-        while iter_node:
-            if iter_node.val == val:
-                if iter_node.next:
-                    iter_node.next.prev = iter_node.prev
-                if iter_node.prev:
-                    iter_node.prev.next = iter_node.next
-                return
-            iter_node = iter_node.next
-        raise AttributeError("Value not found")
+        while True:
+            try:
+                if iter_node.val == val:
+                    if iter_node.next:
+                        iter_node.next.prev = iter_node.prev
+                    else:
+                        self.head = iter_node.prev
+                    if iter_node.prev:
+                        iter_node.prev.next = iter_node.next
+                    else:
+                        self.tail = iter_node.next
+                    return
+                iter_node = iter_node.prev
+            except AttributeError:
+                raise AttributeError("Value not found")
 
-    def pop():
-        pass
+    def pop(self):
+        try:
+            head_val = self.head.val
+            if self.head.prev:
+                self.head = self.head.prev
+                self.head.next = None
+            else:
+                self.head = self.tail = None
+            return head_val
+        except AttributeError:
+            raise AttributeError("This list is empty")   
 
-    def shift():
-        pass
-
-
-
-
+    def shift(self):
+        try:
+            tail_val = self.tail.val
+            if self.tail.next:
+                self.tail = self.tail.next
+                self.tail.prev = None
+            else:
+                self.tail = self.head = None
+            return tail_val
+        except AttributeError:
+            raise AttributeError("This list is empty")
