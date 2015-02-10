@@ -20,7 +20,15 @@ Queue
     Enqueue adds nodes to the back of the list
     dequeue pops nodes off the top of the list
     size checks the length of the queue
-     
+Doubly-Linked Lists
+    Same deal as a Linked list, except the nodes carry values for the nodes
+    ahead and behind them in the list. Also has methods for adding/removing
+    from both ends of the list.
+    Doubly linked lists take up a bit more space in memory, but allow
+    for more flexibilty than a singly-linked list. I guess it's a matter
+    of space over speed: singly-linked lists take less space, but more
+    time to perform operations, and the flip is true for doubly-linked 
+    lists.
 Collaborations: Robert Haskell & Nick Draper (coders)
 References: Google, Google, Google, and also Wikipedia
 
