@@ -11,56 +11,59 @@ class DL_List(object):
         self.tail = tail
 
     def insert(self, val):
-        if self.head:
+        try:
             self.head.next = DL_Node(val, None, self.head)
             self.head = self.head.next
-        else:
+        except AttributeError:
             self.head = self.tail = DL_Node(val)
 
     def append(self, val):
-        if self.tail:
+        try:
             self.tail.prev = DL_Node(val, self.tail, None)
             self.tail = self.tail.prev
-        else:
+        except AttributeError:
             self.tail = self.head = DL_Node(val)
 
-    def remove(self, val):
+    def search(self, val):
         iter_node = self.head
         while True:
             try:
                 if iter_node.val == val:
-                    if iter_node.next:
-                        iter_node.next.prev = iter_node.prev
-                    else:
-                        self.head = iter_node.prev
-                    if iter_node.prev:
-                        iter_node.prev.next = iter_node.next
-                    else:
-                        self.tail = iter_node.next
-                    return
-                iter_node = iter_node.prev
+                    return iter_node
             except AttributeError:
-                raise AttributeError("Value not found")
+                return AttributeError("Value not found")
+            iter_node = iter_node.prev
+
+    def remove(self, val):
+        found_node = self.search(val)
+        try:
+            found_node.next.prev = found_node.prev
+        except AttributeError:
+            self.head = found_node.prev
+        try:
+            found_node.prev.next = found_node.next
+        except AttributeError:
+            self.tail = found_node.next
 
     def pop(self):
         try:
             head_val = self.head.val
-            if self.head.prev:
+            try:
                 self.head = self.head.prev
                 self.head.next = None
-            else:
+            except AttributeError:
                 self.head = self.tail = None
             return head_val
         except AttributeError:
-            raise AttributeError("This list is empty")   
+            raise AttributeError("This list is empty")
 
     def shift(self):
         try:
             tail_val = self.tail.val
-            if self.tail.next:
+            try:
                 self.tail = self.tail.next
                 self.tail.prev = None
-            else:
+            except AttributeError:
                 self.tail = self.head = None
             return tail_val
         except AttributeError:
