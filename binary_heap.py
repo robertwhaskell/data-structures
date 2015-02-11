@@ -17,8 +17,6 @@ class Heap(object):
         placed_node = self.find_open_spot(None, self.head, val)
         print placed_node.val
         holder = placed_node.val
-        print holder
-        print self.head.val
         try:
             while holder > placed_node.parent.val:
                 placed_node.val = placed_node.parent.val
@@ -65,14 +63,27 @@ class Heap(object):
 
     def find_open_spot(self, iter_parent, iter_node, val):
         try:
-            if iter_node.left_child:
-                if iter_node.right_child:
-                    if self.has_right_sibling(iter_node):
-                        return self.find_open_spot(iter_node.parent, iter_node.parent.right_child, val)
-                else:
-                    return self.find_open_spot(iter_node, iter_node.right_child, val)
-            else:
-                return self.find_open_spot(iter_node, iter_node.left_child, val)
+            if not iter_node.left_child:
+                iter_node.left_child = self.find_open_spot(iter_node, iter_node.left_child, val)
+                return iter_node.left_child
+            if not iter_node.right_child:
+                iter_node.right_child = self.find_open_spot(iter_node, iter_node.right_child, val)
+                return iter_node.right_child
+            if self.has_right_sibling(iter_node):
+                self.find_open_spot(iter_node.parent, self.has_right_sibling(iter_node), val)
+            self.find_open_spot(iter_node, iter_node.left_child, val)
         except AttributeError:
-            iter_node = Node(val, iter_parent)
-            return iter_node
+            return Node(val, iter_parent)
+
+        # try:
+        #     if iter_node.left_child:
+        #         if iter_node.right_child:
+        #             if self.has_right_sibling(iter_node):
+        #                 return self.find_open_spot(iter_node.parent, iter_node.parent.right_child, val)
+        #         else:
+        #             return self.find_open_spot(iter_node, iter_node.right_child, val)
+        #     else:
+        #         return self.find_open_spot(iter_node, iter_node.left_child, val)
+        # except AttributeError:
+        #     iter_node = Node(val, iter_parent)
+        #     return iter_node
