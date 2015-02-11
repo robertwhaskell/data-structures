@@ -11,8 +11,14 @@ class Heap(object):
         self.head = None
 
     def push(self, val):
-        placed_node = self.find_open_spot(self.head, val)
+        if not self.head:
+            self.head = Node(val)
+            return
+        placed_node = self.find_open_spot(None, self.head, val)
+        print placed_node.val
         holder = placed_node.val
+        print holder
+        print self.head.val
         try:
             while holder > placed_node.parent.val:
                 placed_node.val = placed_node.parent.val
@@ -62,11 +68,11 @@ class Heap(object):
             if iter_node.left_child:
                 if iter_node.right_child:
                     if self.has_right_sibling(iter_node):
-                        self.find_open_spot(iter_node.parent, iter_node.parent.right_child, val)
+                        return self.find_open_spot(iter_node.parent, iter_node.parent.right_child, val)
                 else:
-                    self.find_open_spot(iter_node, iter_node.right_child, val)
+                    return self.find_open_spot(iter_node, iter_node.right_child, val)
             else:
-                self.find_open_spot(iter_node, iter_node.left_child, val)
+                return self.find_open_spot(iter_node, iter_node.left_child, val)
         except AttributeError:
             iter_node = Node(val, iter_parent)
-            return True
+            return iter_node
