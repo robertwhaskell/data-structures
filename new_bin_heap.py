@@ -25,7 +25,10 @@ class Heap:
             i = i // 2
 
     def pop(self):
-        val = self.heapList[1]
+        try:
+            val = self.heapList[1]
+        except IndexError:
+            raise IndexError("This heap is empty!")
         self.heapList[1] = self.heapList[self.size]
         self.size -= 1
         self.heapList.pop()
