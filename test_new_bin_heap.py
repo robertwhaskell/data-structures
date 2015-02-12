@@ -36,6 +36,20 @@ def test_iter_heap():
     assert h.size == 9
 
 
+def test_push(empty_heap):
+    empty_heap.push(25)
+    assert empty_heap.heapList[1] == 25
+    assert empty_heap.size == 1
+    empty_heap.push(50)
+    assert empty_heap.heapList[1] == 50
+    assert empty_heap.heapList[2] == 25
+    assert empty_heap.size == 2
+
+
 def test_pop(full_heap):
     assert full_heap.pop() == 100
+    assert full_heap.size == 8
     assert full_heap.pop() == 36
+    assert full_heap.size == 7
+    assert full_heap.pop() == 25
+    assert full_heap.size == 6
