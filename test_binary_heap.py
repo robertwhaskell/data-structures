@@ -9,8 +9,8 @@ def populated_heap():
     heap.push(5)
     heap.push(10)
     heap.push(20)
-    # heap.push(50)
-    # heap.push(28)
+    heap.push(50)
+    heap.push(28)
     return heap
 
 
