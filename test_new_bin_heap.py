@@ -53,3 +53,8 @@ def test_pop(full_heap):
     assert full_heap.size == 7
     assert full_heap.pop() == 25
     assert full_heap.size == 6
+
+
+def test_pop_from_empty_heap(empty_heap):
+    with pytest.raises(IndexError):
+        empty_heap.pop()
