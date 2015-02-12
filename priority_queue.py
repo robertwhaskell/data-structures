@@ -1,0 +1,55 @@
+class PNode(object):
+    def __init__(self, val=None, priority=0):
+        self.val = val
+        self.priority = priority
+
+
+class Priority_Queue(object):
+    def __init__(self, new_list=[]):
+        self.priority_list = [PNode(0)]
+        self.priority_list += new_list
+        self.head = self.priority_list[0]
+
+    def insert(self, val):
+        self.priority_list.append(val)
+        self.sort_up(len(self.priority_list) - 1)
+
+    def pop(self):
+        try:
+            value = self.priority_list[1].val
+            self.priority_list[1] = self.priority_list.pop()
+            self.sort_down(1)
+            return value
+        except IndexError:
+            raise IndexError("List empty")
+
+    def peek(self):
+        try:
+            return self.priority_list[1].val
+        except IndexError:
+            raise IndexError("List empty")
+
+    def sort_down(self, index):
+        while (index * 2) > (len(self.priority_list) - 1):
+            max_child = self.max_child(index)
+            if self.priority_list[max_child] > self.priority_list[index]:
+                temp = self.priority_list[index]
+                self.priority_list[index] = self.priority_list[max_child]
+                self.priority_list[max_child] = temp
+            index = max_child
+
+    def sort_up(self, index):
+        while self.priority_list[index] > self.priority_list[index // 2]:
+            if index == 1:
+                break
+            temp = self.priority_list[index]
+            self.priority_list[index] = self.priority_list[index // 2]
+            self.priority_list[index // 2] = temp
+            index = index // 2
+
+    def max_child(self, index):
+        if (index * 2 + 1) > (len(self.priority_list) - 1):
+            return (index * 2)
+        if self.priority_list[index * 2] > self.priority_list[index * 2 + 1]:
+            return (index * 2)
+        return (index * 2 + 1)
