@@ -1,77 +1,41 @@
-class Node(object):
-    def __init__(self, val, parent=None, left_child=None, right_child=None):
-        self.val = val
-        self.parent = parent
-        self.left_child = left_child
-        self.right_child = right_child
-
-
 class Heap(object):
-    def __init__(self):
-        self.head = None
+    def __init__(self, new_list=[]):
+        self.heap_list = [0]
+        self.heap_list += new_list
+        self.head = self.heap_list[0]
 
     def push(self, val):
-        if self.head:
-            placed_node = self.find_open_spot(None, self.head, val)
-            if placed_node.val:
-                print placed_node.val
-            holder = placed_node.val
-            try:
-                while holder > placed_node.parent.val:
-                    placed_node.val = placed_node.parent.val
-                    placed_node.parent.val = holder
-                    placed_node = placed_node.parent
-            except AttributeError:
-                pass
-        else:
-            self.head = Node(val)
+        self.heap_list.append(val)
+        self.sort_up(len(self.heap_list) - 1)
 
     def pop(self):
-        self.head.val = self.find_and_destroy_last_node(self.head)
-        self.check_values(self.head, self.head.val)
-        pass
-
-    def check_values(self, iter_node, val):
         try:
-            if iter_node.left_child.val > val:
-                iter_node.val = iter_node.left_child.val
-                iter_node.left_child.val = val
-                self.check_values(iter_node.left_child, iter_node.left_child.val)
+            self.heap_list[1] = self.heap_list.pop()
+            self.sort_down(1)
+        except IndexError:
+            raise IndexError("List empty")
 
-            if iter_node.right_child.val > val:
-                iter_node.val = iter_node.right_child.val
-                iter_node.right_child.val = val
-                self.check_values(iter_node.right_child, iter_node.right_child.val)
-        except AttributeError:
-            return
+    def sort_down(self, index):
+        while (index * 2) > (len(self.heap_list) - 1):
+            max_child = self.max_child(index)
+            if self.heap_list[max_child] > self.heap_list[index]:
+                temp = self.heap_list[index]
+                self.heap_list[index] = self.heap_list[max_child]
+                self.heap_list[max_child] = temp
+            index = max_child
 
-    def has_right_sibling(self, iter_node):
-        try:
-            return iter_node.parent.left_child
-        except AttributeError:
-            return False
+    def sort_up(self, index):
+        while self.heap_list[index] > self.heap_list[index // 2]:
+            if index == 1:
+                break
+            temp = self.heap_list[index]
+            self.heap_list[index] = self.heap_list[index // 2]
+            self.heap_list[index // 2] = temp
+            index = index // 2
 
-    def find_and_destroy_last_node(self, iter_node):
-        try:
-            self.find_and_destroy_last_node(iter_node.left_child)
-            self.find_and_destroy_last_node(iter_node.right_child)
-            self.find_and_destroy_last_node(self.has_right_sibling(iter_node))
-            iter_val = iter_node.val
-            iter_node = None
-            return iter_val
-        except AttributeError:
-            return
-
-    def find_open_spot(self, iter_parent, iter_node, val):
-        try:
-            if not iter_node.left_child:
-                iter_node.left_child = self.find_open_spot(iter_node, iter_node.left_child, val)
-                return iter_node.left_child
-            if not iter_node.right_child:
-                iter_node.right_child = self.find_open_spot(iter_node, iter_node.right_child, val)
-                return iter_node.right_child
-            if self.has_right_sibling(iter_node):
-                self.find_open_spot(iter_node.parent, self.has_right_sibling(iter_node), val)
-            self.find_open_spot(iter_node, iter_node.left_child, val)
-        except AttributeError:
-            return Node(val, iter_parent)
+    def max_child(self, index):
+        if (index * 2 + 1) > (len(self.heap_list) - 1):
+            return (index * 2)
+        if self.heap_list[index * 2] > self.heap_list[index * 2 + 1]:
+            return (index * 2)
+        return (index * 2 + 1)

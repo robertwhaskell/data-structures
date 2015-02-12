@@ -29,6 +29,9 @@ Doubly-Linked Lists
     of space over speed: singly-linked lists take less space, but more
     time to perform operations, and the flip is true for doubly-linked 
     lists.
+Binary Heap
+    A binary heap where each value in the list has two children that are guaranteed to be less than the node.
+    Resources: http://interactivepython.org/runestone/static/pythonds/Trees/BinaryHeapImplementation.html
 Collaborations: Robert Haskell & Nick Draper (coders)
 References: Google, Google, Google, and also Wikipedia
 

@@ -23,16 +23,6 @@ def full_heap():
     return h
 
 
-@pytest.fixture
-def random_heap():
-    h = Heap()
-    h.push(10)
-    h.push(20)
-    h.push(2)
-    h.push(100)
-    h.push(150)
-    return h
-
 def test_heap():
     h = Heap()
     assert h.heapList[0] == 0
@@ -45,8 +35,6 @@ def test_iter_heap():
     assert h.heapList[1] == 100
     assert h.size == 9
 
-def test_random_heap(random_heap):
-    assert random_heap.heapList == [0, 150, 100, 2, 10, 20]
 
 def test_push(empty_heap):
     empty_heap.push(25)
