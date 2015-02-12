@@ -5,10 +5,8 @@ class PNode(object):
 
 
 class Priority_Queue(object):
-    def __init__(self, new_list=[]):
+    def __init__(self):
         self.priority_list = [PNode(0)]
-        self.priority_list += new_list
-        self.head = self.priority_list[0]
 
     def insert(self, val):
         self.priority_list.append(val)
@@ -16,7 +14,7 @@ class Priority_Queue(object):
 
     def pop(self):
         try:
-            value = self.priority_list[1].val
+            value = self.priority_list[1]
             self.priority_list[1] = self.priority_list.pop()
             self.sort_down(1)
             return value
@@ -39,7 +37,7 @@ class Priority_Queue(object):
             index = max_child
 
     def sort_up(self, index):
-        while self.priority_list[index] > self.priority_list[index // 2]:
+        while self.priority_list[index].priority > self.priority_list[index // 2].priority:
             if index == 1:
                 break
             temp = self.priority_list[index]
