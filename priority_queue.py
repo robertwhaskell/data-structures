@@ -15,11 +15,15 @@ class Priority_Queue(object):
     def pop(self):
         try:
             value = self.priority_list[1]
-            self.priority_list[1] = self.priority_list.pop()
-            self.sort_down(1)
-            return value
         except IndexError:
             raise IndexError("List empty")
+        try:
+            back_value = self.priority_list.pop()
+            self.priority_list[1] = back_value
+            self.sort_down(1)
+        except IndexError:
+            return back_value
+        return value
 
     def peek(self):
         try:
@@ -28,9 +32,9 @@ class Priority_Queue(object):
             raise IndexError("List empty")
 
     def sort_down(self, index):
-        while (index * 2) > (len(self.priority_list) - 1):
+        while (index * 2) < (len(self.priority_list) - 1):
             max_child = self.max_child(index)
-            if self.priority_list[max_child] > self.priority_list[index]:
+            if self.priority_list[max_child].priority > self.priority_list[index].priority:
                 temp = self.priority_list[index]
                 self.priority_list[index] = self.priority_list[max_child]
                 self.priority_list[max_child] = temp
@@ -48,6 +52,6 @@ class Priority_Queue(object):
     def max_child(self, index):
         if (index * 2 + 1) > (len(self.priority_list) - 1):
             return (index * 2)
-        if self.priority_list[index * 2] > self.priority_list[index * 2 + 1]:
+        if self.priority_list[index * 2].priority > self.priority_list[index * 2 + 1].priority:
             return (index * 2)
         return (index * 2 + 1)

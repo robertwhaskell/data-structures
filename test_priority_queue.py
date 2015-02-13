@@ -15,23 +15,37 @@ def populated_queue():
 def test_pop(populated_queue):
     l = []
     for thing in populated_queue.priority_list:
-        l.append(thing.val)
+        l .append(thing.val)
     print l
-    assert populated_queue.pop().val == l[1]
+    assert populated_queue.pop().val is False
     l = []
     for thing in populated_queue.priority_list:
-        l.append(thing.val)
+        l .append(thing.val)
     print l
-    assert populated_queue.pop().val == l[1]
+    assert populated_queue.pop().val == "Hello"
+    l = []
+    for thing in populated_queue.priority_list:
+        l .append(thing.val)
+    print l
+    assert populated_queue.pop().val == 100
+    l = []
+    for thing in populated_queue.priority_list:
+        l .append(thing.val)
+    print l
+    assert populated_queue.pop().val == 150
+    l = []
+    for thing in populated_queue.priority_list:
+        l .append(thing.val)
+    print l
 
 
 def test_peek(populated_queue):
-    assert populated_queue.peek() == False
+    assert populated_queue.peek() is False
 
 
 def test_insert(populated_queue):
     populated_queue.insert(PNode(True, 10000000))
-    assert populated_queue.peek() == True
+    assert populated_queue.peek() is True
 
 
 def test_order(populated_queue):
@@ -40,3 +54,15 @@ def test_order(populated_queue):
         l.append(thing.val)
     print l
     assert l == [0, False, "Hello", 100, 150]
+
+
+def test_insert_into_empty_queue():
+    pq = Priority_Queue()
+    pq.insert(PNode('thirty', 30))
+    assert pq.peek() == 'thirty'
+
+
+def pop_off_empty_queue():
+    pq = Priority_Queue()
+    with pytest.raises(IndexError):
+        pq.pop()
