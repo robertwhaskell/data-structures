@@ -13,30 +13,10 @@ def populated_queue():
 
 
 def test_pop(populated_queue):
-    l = []
-    for thing in populated_queue.priority_list:
-        l .append(thing.val)
-    print l
     assert populated_queue.pop().val is False
-    l = []
-    for thing in populated_queue.priority_list:
-        l .append(thing.val)
-    print l
     assert populated_queue.pop().val == "Hello"
-    l = []
-    for thing in populated_queue.priority_list:
-        l .append(thing.val)
-    print l
     assert populated_queue.pop().val == 100
-    l = []
-    for thing in populated_queue.priority_list:
-        l .append(thing.val)
-    print l
     assert populated_queue.pop().val == 150
-    l = []
-    for thing in populated_queue.priority_list:
-        l .append(thing.val)
-    print l
 
 
 def test_peek(populated_queue):
