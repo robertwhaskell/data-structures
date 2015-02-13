@@ -34,7 +34,7 @@ class Priority_Queue(object):
     def sort_down(self, index):
         while (index * 2) < (len(self.priority_list) - 1):
             max_child = self.max_child(index)
-            if self.priority_list[max_child].priority > self.priority_list[index].priority:
+            if self.priority_list[max_child].priority >= self.priority_list[index].priority:
                 temp = self.priority_list[index]
                 self.priority_list[index] = self.priority_list[max_child]
                 self.priority_list[max_child] = temp
