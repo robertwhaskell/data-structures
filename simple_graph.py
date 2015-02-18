@@ -1,13 +1,20 @@
 class Graph(object):
 
     def __init__(self):
-        self.graph == {}
+        self.graph = {}
 
     def nodes(self):
-        pass
+        l = []
+        for k, v in self.graph.iteritems():
+            l.append(k)
+        return l
 
     def edges(self):
-        pass
+        l = []
+        for k, v in self.graph.iteritems():
+            for edge in v:
+                l.append([k, edge])
+        return l
 
     def add_node(self, node):
         self.graph.setdefault(node, [])

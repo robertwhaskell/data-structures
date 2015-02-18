@@ -8,6 +8,7 @@ def populated():
     g.add_node("Hello")
     g.add_edge(5, 7)
     g.add_edge(5, "Hello")
+    return g
 
 
 def test_graph_constructor():
@@ -20,7 +21,7 @@ def test_nodes(populated):
 
 
 def test_edges(populated):
-    assert populated.edges == ((5, 7), (5, "Hello"))
+    assert populated.edges() == [[5, 7], [5, "Hello"]]
 
 
 def test_add_node():
@@ -29,9 +30,9 @@ def test_add_node():
     assert 70 in g.graph
 
 
-def test_add_edge():
+def test_add_edge(populated):
     populated.add_edge(7, 5)
-    assert (7, 5) in populated.edges()
+    assert [7, 5] in populated.edges()
 
 
 def test_del_node(populated):
@@ -41,7 +42,7 @@ def test_del_node(populated):
 
 def test_del_edge(populated):
     populated.del_edge(5, 7)
-    assert (5, 7) not in populated.edges
+    assert [5, 7] not in populated.edges()
 
 
 def test_has_node(populated):
