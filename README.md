@@ -32,6 +32,9 @@ Doubly-Linked Lists
 Binary Heap
     A binary heap where each value in the list has two children that are guaranteed to be less than the node.
     Resources: http://interactivepython.org/runestone/static/pythonds/Trees/BinaryHeapImplementation.html
+Graph
+    A graph of nodes where each node can be connected to any other node.
+    Note - node values must be immutable.
 Collaborations: Robert Haskell & Nick Draper (coders)
 References: Google, Google, Google, and also Wikipedia
 
