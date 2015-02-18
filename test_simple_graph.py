@@ -11,6 +11,32 @@ def populated():
     return g
 
 
+@pytest.fixture
+def cyclic():
+    g = Graph()
+    g.add_node(1)
+    g.add_node(2)
+    g.add_node(3)
+    g.add_node(4)
+    g.add_node(5)
+    g.add_node(6)
+    g.add_node(7)
+    g.add_node(8)
+    g.add_node(9)
+    g.add_edge(1, 2)
+    g.add_edge(1, 3)
+    g.add_edge(1, 6)
+    g.add_edge(5, 1)
+    g.add_edge(2, 8)
+    g.add_edge(2, 9)
+    g.add_edge(2, 4)
+    g.add_edge(2, 3)
+    g.add_edge(3, 7)
+    g.add_edge(7, 1)
+    g.add_edge(7, 6)
+    return g
+
+
 def test_graph_constructor():
     assert Graph().graph == {}
 
@@ -75,3 +101,16 @@ def test_adjacent(populated):
 def test_adjacent_none(populated):
     with pytest.raises(KeyError):
         populated.adjacent(58, 28)
+
+
+def test_depth_first(cyclic):
+    nodes = cyclic.depth_first_traversal(1)
+    for val in [1, 2, 3, 4, 6, 7, 8, 9]:
+        assert val in nodes
+
+
+
+def test_breadth_first(cyclic):
+    nodes = cyclic.breadth_first_traversal(1)
+    for val in [1, 2, 3, 4, 6, 7, 8, 9]:
+        assert val in nodes

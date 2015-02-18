@@ -59,24 +59,22 @@ class Graph(object):
         visited.append(node)
         for edge in self.graph[node]:
             if edge not in visited:
-                visited = self.depth_first_helper(visited, edge)
+                visited = self.depth_first_helper(edge, visited)
         return visited
 
     def depth_first_traversal(self, node):
         return self.depth_first_helper(node, [])
 
     def breadth_first_traversal(self, node):
-        from queue import Queue
         visited = []
-        q = Queue
-        q.enqueue(node)
-        while q.list_size > 0:
-            vertex = q.dequeue()
+        q = [node]
+        while q:
+            vertex = q.pop()
             if vertex not in visited:
                 visited.append(vertex)
                 for edge in self.graph[vertex]:
                     if edge not in visited:
-                        q.enqueue(edge)
+                        q.append(edge)
         return visited
 
 
