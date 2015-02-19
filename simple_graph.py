@@ -125,5 +125,3 @@ if __name__ == '__main__':
     print f.breadth_first_traversal(1)
     print f.depth_first_traversal(5)
     print f.breadth_first_traversal(5)
-
-

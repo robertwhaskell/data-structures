@@ -1,5 +1,7 @@
 import pytest
 from simple_graph import Graph
+
+
 @pytest.fixture
 def populated():
     g = Graph()
