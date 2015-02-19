@@ -4,16 +4,13 @@ class Graph(object):
         self.graph = {}
 
     def nodes(self):
-        l = []
-        for k, v in self.graph.iteritems():
-            l.append(k)
-        return l
+        return self.graph.keys()
 
     def edges(self):
         l = []
         for k, v in self.graph.iteritems():
-            for edge in v:
-                l.append([k, edge])
+            for node in v:
+                l.append([k, node])
         return l
 
     def add_node(self, node):
@@ -27,7 +24,10 @@ class Graph(object):
             self.graph.setdefault(node1, [node2])
 
     def del_node(self, node):
-        self.graph.pop(node, None)
+        try:
+            self.graph.pop(node)
+        except KeyError:
+            raise KeyError("{} does not exist".format(node))
 
     def del_edge(self, node1, node2):
         temp = ''

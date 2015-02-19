@@ -80,6 +80,11 @@ def test_del_node(populated):
     assert 5 not in populated.graph
 
 
+def test_del_nonexistent_node(populated):
+    with pytest.raises(KeyError):
+        populated.del_node(70)
+
+
 def test_del_edge(populated):
     populated.del_edge(5, 7)
     assert [5, 7] not in populated.edges()
