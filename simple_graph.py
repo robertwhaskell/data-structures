@@ -40,8 +40,8 @@ class Graph(object):
             raise KeyError("{} does not exist".format(node1))
         try:
             temp.remove(node2)
-        except KeyError:
-            raise KeyError("{} does not exist".format(node2))
+        except ValueError:
+            raise ValueError("{} does not exist".format(node2))
 
     def has_node(self, node):
         return node in self.graph

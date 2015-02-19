@@ -90,6 +90,13 @@ def test_del_edge(populated):
     assert [5, 7] not in populated.edges()
 
 
+def test_del_nonexistent_edge(populated):
+    with pytest.raises(ValueError):
+        populated.del_edge(5, 10)
+    with pytest.raises(KeyError):
+        populated.del_edge(10, 5)
+
+
 def test_has_node(populated):
     assert populated.has_node(5)
 
