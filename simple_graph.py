@@ -28,6 +28,9 @@ class Graph(object):
             self.graph.pop(node)
         except KeyError:
             raise KeyError("{} does not exist".format(node))
+        for k, v in self.graph.iteritems():
+            if node in v:
+                v.remove(node)
 
     def del_edge(self, node1, node2):
         temp = ''
