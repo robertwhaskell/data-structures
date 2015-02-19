@@ -78,9 +78,52 @@ class Graph(object):
         return visited
 
 
+def construct_graph():
+    g = Graph()
+    g.add_node(1)
+    g.add_node(2)
+    g.add_node(3)
+    g.add_node(4)
+    g.add_node(5)
+    g.add_node(6)
+    g.add_node(7)
+    g.add_node(8)
+    g.add_node(9)
+    g.add_edge(1, 2)
+    g.add_edge(1, 3)
+    g.add_edge(1, 6)
+    g.add_edge(5, 1)
+    g.add_edge(2, 8)
+    g.add_edge(2, 9)
+    g.add_edge(2, 4)
+    g.add_edge(2, 3)
+    g.add_edge(3, 7)
+    g.add_edge(7, 1)
+    g.add_edge(7, 6)
+    return g
 
 
+def construct_different_graph():
+    g = Graph()
+    g.graph.setdefault(2, [6, 3])
+    g.graph.setdefault(1, [5, 2])
+    g.graph.setdefault(3, [])
+    g.graph.setdefault(4, [1])
+    g.graph.setdefault(5, [4, 2, 6])
+    g.graph.setdefault(6, [1, 5, 3, 2])
+    return g
 
 
+if __name__ == '__main__':
+    g = construct_graph()
+    print g.depth_first_traversal(1)
+    print g.breadth_first_traversal(1)
+    print g.depth_first_traversal(5)
+    print g.breadth_first_traversal(5)
+    f = construct_different_graph()
+    print f.depth_first_traversal(1)
+    print f.breadth_first_traversal(1)
+    print f.depth_first_traversal(5)
+    print f.breadth_first_traversal(5)
 
 

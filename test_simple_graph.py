@@ -67,6 +67,12 @@ def test_add_edge(populated):
     assert [7, 5] in populated.edges()
 
 
+def test_add_edge_new_node(populated):
+    populated.add_edge(5, 28)
+    assert 28 in populated.graph
+    assert 28 in populated.graph[5]
+
+
 def test_del_node(populated):
     populated.del_node(5)
     assert 5 not in populated.graph
@@ -107,7 +113,6 @@ def test_depth_first(cyclic):
     nodes = cyclic.depth_first_traversal(1)
     for val in [1, 2, 3, 4, 6, 7, 8, 9]:
         assert val in nodes
-
 
 
 def test_breadth_first(cyclic):

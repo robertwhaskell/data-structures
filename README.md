@@ -35,6 +35,7 @@ Binary Heap
 Graph
     A graph of nodes where each node can be connected to any other node.
     Note - node values must be immutable.
+    Graph traversal resource: http://eddmann.com/posts/depth-first-search-and-breadth-first-search-in-python/
 Collaborations: Robert Haskell & Nick Draper (coders)
 References: Google, Google, Google, and also Wikipedia
 
