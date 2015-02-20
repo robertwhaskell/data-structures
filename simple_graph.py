@@ -99,7 +99,7 @@ class Graph(object):
         return visited
 
 
-def construct_graph():
+def construct_cyclic_graph():
     g = Graph()
     g.add_node(1)
     g.add_node(2)
@@ -135,14 +135,41 @@ def construct_different_graph():
     return g
 
 
+def measure_runtime(my_function):
+    import datetime
+    start_time = datetime.datetime.now()
+    my_function(1)
+    end_time = datetime.datetime.now()
+    return (end_time - start_time)
+
+
 if __name__ == '__main__':
-    g = construct_graph()
-    print g.depth_first_traversal(1)
-    print g.breadth_first_traversal(1)
-    print g.depth_first_traversal(5)
-    print g.breadth_first_traversal(5)
-    f = construct_different_graph()
-    print f.depth_first_traversal(1)
-    print f.breadth_first_traversal(1)
-    print f.depth_first_traversal(5)
-    print f.breadth_first_traversal(5)
+    g = construct_cyclic_graph()
+    print "Time for depth-first traversal:"
+    print measure_runtime(g.depth_first_traversal)
+    print "Time for breadth-first traversal:"
+    print measure_runtime(g.breadth_first_traversal)
+    e = construct_different_graph()
+    print "Trying for a new graph."
+    print "Time for depth-first traversal:"
+    print measure_runtime(e.depth_first_traversal)
+    print "Time for breadth-first traversal:"
+    print measure_runtime(e.breadth_first_traversal)
+    # print measure_runtime(depth_first_traversal(), 1)
+    # import datetime
+    # g = construct_cyclic_graph()
+    # a = datetime.datetime.now()
+    # print g.depth_first_traversal(1)
+    # b = datetime.datetime.now()
+    # print b-a
+    # c = datetime.datetime.now()
+    # print g.breadth_first_traversal(1)
+    # d = datetime.datetime.now()
+    # print d-c
+    # print measure_runtime(g)
+    # print g.breadth_first_traversal(5)
+    # f = construct_different_graph()
+    # print f.depth_first_traversal(1)
+    # print f.breadth_first_traversal(1)
+    # print f.depth_first_traversal(5)
+    # print f.breadth_first_traversal(5)

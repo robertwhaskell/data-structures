@@ -97,6 +97,11 @@ def test_del_nonexistent_edge(populated):
         populated.del_edge(10, 5)
 
 
+def test_del_node_edge_list(cyclic):
+    cyclic.del_node(3)
+    assert 3 not in cyclic.graph[1]
+
+
 def test_has_node(populated):
     assert populated.has_node(5)
 
