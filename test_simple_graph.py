@@ -78,6 +78,8 @@ def test_add_edge_new_node(populated):
 def test_del_node(populated):
     populated.del_node(5)
     assert 5 not in populated.graph
+    for k, v in populated.graph.iteritems():
+            assert 5 not in v
 
 
 def test_del_nonexistent_node(populated):
