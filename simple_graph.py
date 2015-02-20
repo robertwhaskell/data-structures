@@ -155,21 +155,3 @@ if __name__ == '__main__':
     print measure_runtime(e.depth_first_traversal)
     print "Time for breadth-first traversal:"
     print measure_runtime(e.breadth_first_traversal)
-    # print measure_runtime(depth_first_traversal(), 1)
-    # import datetime
-    # g = construct_cyclic_graph()
-    # a = datetime.datetime.now()
-    # print g.depth_first_traversal(1)
-    # b = datetime.datetime.now()
-    # print b-a
-    # c = datetime.datetime.now()
-    # print g.breadth_first_traversal(1)
-    # d = datetime.datetime.now()
-    # print d-c
-    # print measure_runtime(g)
-    # print g.breadth_first_traversal(5)
-    # f = construct_different_graph()
-    # print f.depth_first_traversal(1)
-    # print f.breadth_first_traversal(1)
-    # print f.depth_first_traversal(5)
-    # print f.breadth_first_traversal(5)
