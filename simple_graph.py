@@ -8,11 +8,11 @@ class Graph(object):
         return self.graph.keys()
 
     def edges(self):
-        """Return a list of edges in the graph."""
+        """Return a list of edges and their weights in the graph."""
         l = []
         for k, v in self.graph.iteritems():
             for node in v:
-                l.append([k, node])
+                l.append([k, node, v[node]])
         return l
 
     def add_node(self, node):
@@ -49,8 +49,8 @@ class Graph(object):
             raise KeyError("{} does not exist".format(node1))
         try:
             temp.pop(node2)
-        except ValueError:
-            raise ValueError("{} does not exist".format(node2))
+        except KeyError:
+            raise KeyError("{} does not exist".format(node2))
 
     def has_node(self, node):
         """Return True if node is in graph."""

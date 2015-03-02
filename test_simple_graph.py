@@ -8,8 +8,8 @@ def populated():
     g.add_node(5)
     g.add_node(7)
     g.add_node("Hello")
-    g.add_edge(5, 7)
-    g.add_edge(5, "Hello")
+    g.add_edge(5, 7, 30)
+    g.add_edge(5, "Hello", 10)
     return g
 
 
@@ -25,17 +25,17 @@ def cyclic():
     g.add_node(7)
     g.add_node(8)
     g.add_node(9)
-    g.add_edge(1, 2)
-    g.add_edge(1, 3)
-    g.add_edge(1, 6)
-    g.add_edge(5, 1)
-    g.add_edge(2, 8)
-    g.add_edge(2, 9)
-    g.add_edge(2, 4)
-    g.add_edge(2, 3)
-    g.add_edge(3, 7)
-    g.add_edge(7, 1)
-    g.add_edge(7, 6)
+    g.add_edge(1, 2, 1)
+    g.add_edge(1, 3, 3)
+    g.add_edge(1, 6, 3)
+    g.add_edge(5, 1, 10)
+    g.add_edge(2, 8, 1000)
+    g.add_edge(2, 9, 1)
+    g.add_edge(2, 4, 4)
+    g.add_edge(2, 3, 50)
+    g.add_edge(3, 7, 4)
+    g.add_edge(7, 1, 5)
+    g.add_edge(7, 6, 10)
     return g
 
 
@@ -50,7 +50,10 @@ def test_nodes(populated):
 
 
 def test_edges(populated):
-    assert populated.edges() == [[5, 7], [5, "Hello"]]
+    edge_list = populated.edges()
+    assert len(edge_list) == 2
+    assert [5, 7, 30] in edge_list
+    assert [5, "Hello", 10] in edge_list
 
 
 def test_add_node():
@@ -65,12 +68,12 @@ def test_add_mutable(populated):
 
 
 def test_add_edge(populated):
-    populated.add_edge(7, 5)
-    assert [7, 5] in populated.edges()
+    populated.add_edge(7, 5, 10)
+    assert [7, 5, 10] in populated.edges()
 
 
 def test_add_edge_new_node(populated):
-    populated.add_edge(5, 28)
+    populated.add_edge(5, 28, 1000)
     assert 28 in populated.graph
     assert 28 in populated.graph[5]
 
@@ -93,7 +96,7 @@ def test_del_edge(populated):
 
 
 def test_del_nonexistent_edge(populated):
-    with pytest.raises(ValueError):
+    with pytest.raises(KeyError):
         populated.del_edge(5, 10)
     with pytest.raises(KeyError):
         populated.del_edge(10, 5)
@@ -113,7 +116,7 @@ def test_doesnt_have_node(populated):
 
 
 def test_neighbors(populated):
-    assert populated.neighbors(5) == [7, "Hello"]
+    assert populated.neighbors(5) == {7: 30, "Hello": 10}
 
 
 def test_neigbors_none(populated):
