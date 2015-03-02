@@ -10,13 +10,15 @@ class Heap(object):
 
     def pop(self):
         try:
+            val = self.heap_list[1]
             self.heap_list[1] = self.heap_list.pop()
             self.sort_down(1)
         except IndexError:
             raise IndexError("List empty")
+        return val
 
     def sort_down(self, index):
-        while (index * 2) > (len(self.heap_list) - 1):
+        while (index * 2) < (len(self.heap_list) - 1):
             max_child = self.max_child(index)
             if self.heap_list[max_child] > self.heap_list[index]:
                 temp = self.heap_list[index]

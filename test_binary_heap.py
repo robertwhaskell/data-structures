@@ -1,4 +1,4 @@
-from new_bin_heap import Heap
+from binary_heap import Heap
 import pytest
 
 
@@ -33,38 +33,34 @@ def random_heap():
     h.push(150)
     return h
 
+
 def test_heap():
     h = Heap()
-    assert h.heapList[0] == 0
-    assert h.size == 0
+    assert h.heap_list[0] == 0
 
 
 def test_iter_heap():
     l = [100, 19, 36, 17, 3, 25, 1, 2, 7]
     h = Heap(l)
-    assert h.heapList[1] == 100
-    assert h.size == 9
+    assert h.heap_list[1] == 100
+
 
 def test_random_heap(random_heap):
-    assert random_heap.heapList == [0, 150, 100, 2, 10, 20]
+    assert random_heap.heap_list == [0, 150, 100, 2, 10, 20]
+
 
 def test_push(empty_heap):
     empty_heap.push(25)
-    assert empty_heap.heapList[1] == 25
-    assert empty_heap.size == 1
+    assert empty_heap.heap_list[1] == 25
     empty_heap.push(50)
-    assert empty_heap.heapList[1] == 50
-    assert empty_heap.heapList[2] == 25
-    assert empty_heap.size == 2
+    assert empty_heap.heap_list[1] == 50
+    assert empty_heap.heap_list[2] == 25
 
 
 def test_pop(full_heap):
     assert full_heap.pop() == 100
-    assert full_heap.size == 8
     assert full_heap.pop() == 36
-    assert full_heap.size == 7
     assert full_heap.pop() == 25
-    assert full_heap.size == 6
 
 
 def test_pop_from_empty_heap(empty_heap):
