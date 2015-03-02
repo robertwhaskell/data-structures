@@ -39,5 +39,5 @@ Graph
 Collaborations: Robert Haskell & Nick Draper (coders)
 References: Google, Google, Google, and also Wikipedia
 
-
+[![Build Status](https://travis-ci.org/robertwhaskell/data-structures.svg?branch=weighted-graph)](https://travis-ci.org/robertwhaskell/data-structures)
     
