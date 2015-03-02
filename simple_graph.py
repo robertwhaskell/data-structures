@@ -28,8 +28,10 @@ class Graph(object):
             self.graph.setdefault(node1, {node2: weight})
 
     def del_node(self, node):
-        """Delete a node from the graph. Throw a KeyError if the node wasn't
-        in the graph."""
+        """
+        Delete a node from the graph. Throw a KeyError if the node wasn't
+        in the graph.
+        """
         try:
             self.graph.pop(node)
         except KeyError:
@@ -39,9 +41,10 @@ class Graph(object):
                 v.pop(node)
 
     def del_edge(self, node1, node2):
-        """Delete an edge from the graph. Throw a KeyError if the first node
-         wasn't in the graph.  Throw a ValueError if the second node wasn't
-         in the graph."""
+        """
+        Delete an edge from the graph. Throw a KeyError if either node
+        wasn't in the graph.
+        """
         temp = ''
         try:
             temp = self.graph[node1]
@@ -57,16 +60,20 @@ class Graph(object):
         return node in self.graph
 
     def neighbors(self, node):
-        """Return a dictionary of nodes connected to the supplied node. Throw
-        a KeyError if the supplied node wasn't in the graph."""
+        """
+        Return a dictionary of nodes connected to the supplied node. Throw
+        a KeyError if the supplied node wasn't in the graph.
+        """
         try:
             return self.graph[node]
         except KeyError:
             raise KeyError("{} doesn't exist".format(node))
 
     def adjacent(self, node1, node2):
-        """Return true if an edge points from the first node to the second
-         node. Throw a KeyError if the first node wasn't in the graph."""
+        """
+        Return true if an edge points from the first node to the second
+        node. Throw a KeyError if the first node wasn't in the graph.
+        """
         try:
             return node2 in self.graph[node1]
         except KeyError:
@@ -80,13 +87,17 @@ class Graph(object):
         return visited
 
     def depth_first_traversal(self, node):
-        """Perform a depth-first traversal of the graph. Return a list of
-         nodes in the order visited."""
+        """
+        Perform a depth-first traversal of the graph. Return a list of
+        nodes in the order visited.
+        """
         return self._depth_first_helper(node, [])
 
     def breadth_first_traversal(self, node):
-        """Perform a breadth-first traversal of the graph. Return a list of
-         nodes in the order visited."""
+        """
+        Perform a breadth-first traversal of the graph. Return a list of
+        nodes in the order visited.
+        """
         visited = []
         q = [node]
         while q:
