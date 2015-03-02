@@ -17,15 +17,15 @@ class Graph(object):
 
     def add_node(self, node):
         """Add a node to the graph."""
-        self.graph.setdefault(node, [])
+        self.graph.setdefault(node, {})
 
-    def add_edge(self, node1, node2):
+    def add_edge(self, node1, node2, weight):
         """Add an edge to the graph."""
         try:
-            self.graph.setdefault(node2, [])
-            self.graph[node1].append(node2)
+            self.graph.setdefault(node2, {})
+            self.graph[node1].setdefault(node2, weight)
         except KeyError:
-            self.graph.setdefault(node1, [node2])
+            self.graph.setdefault(node1, {node2: weight})
 
     def del_node(self, node):
         """Delete a node from the graph. Throw a KeyError if the node wasn't
@@ -36,7 +36,7 @@ class Graph(object):
             raise KeyError("{} does not exist".format(node))
         for k, v in self.graph.iteritems():
             if node in v:
-                v.remove(node)
+                v.pop(node)
 
     def del_edge(self, node1, node2):
         """Delete an edge from the graph. Throw a KeyError if the first node
@@ -48,7 +48,7 @@ class Graph(object):
         except KeyError:
             raise KeyError("{} does not exist".format(node1))
         try:
-            temp.remove(node2)
+            temp.pop(node2)
         except ValueError:
             raise ValueError("{} does not exist".format(node2))
 
@@ -57,8 +57,8 @@ class Graph(object):
         return node in self.graph
 
     def neighbors(self, node):
-        """Return a list of nodes connected to the supplied node. Throw a
-         KeyError if the supplied node wasn't in the graph."""
+        """Return a dictionary of nodes connected to the supplied node. Throw
+        a KeyError if the supplied node wasn't in the graph."""
         try:
             return self.graph[node]
         except KeyError:
@@ -110,28 +110,28 @@ def construct_cyclic_graph():
     g.add_node(7)
     g.add_node(8)
     g.add_node(9)
-    g.add_edge(1, 2)
-    g.add_edge(1, 3)
-    g.add_edge(1, 6)
-    g.add_edge(5, 1)
-    g.add_edge(2, 8)
-    g.add_edge(2, 9)
-    g.add_edge(2, 4)
-    g.add_edge(2, 3)
-    g.add_edge(3, 7)
-    g.add_edge(7, 1)
-    g.add_edge(7, 6)
+    g.add_edge(1, 2, 4)
+    g.add_edge(1, 3, 2)
+    g.add_edge(1, 6, 1)
+    g.add_edge(5, 1, 3)
+    g.add_edge(2, 8, 5)
+    g.add_edge(2, 9, 6)
+    g.add_edge(2, 4, 3)
+    g.add_edge(2, 3, 1)
+    g.add_edge(3, 7, 6)
+    g.add_edge(7, 1, 2)
+    g.add_edge(7, 6, 5)
     return g
 
 
 def construct_different_graph():
     g = Graph()
-    g.graph.setdefault(2, [6, 3])
-    g.graph.setdefault(1, [5, 2])
-    g.graph.setdefault(3, [])
-    g.graph.setdefault(4, [1])
-    g.graph.setdefault(5, [4, 2, 6])
-    g.graph.setdefault(6, [1, 5, 3, 2])
+    g.graph.setdefault(2, {6: 2, 3: 4})
+    g.graph.setdefault(1, {5: 1, 2: 3})
+    g.graph.setdefault(3, {})
+    g.graph.setdefault(4, {1: 5})
+    g.graph.setdefault(5, {4: 1, 2: 4, 6: 3})
+    g.graph.setdefault(6, {1: 2, 5: 6, 3: 1, 2: 3})
     return g
 
 
