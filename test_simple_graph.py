@@ -146,4 +146,6 @@ def test_breadth_first(cyclic):
 
 
 def test_dijkstras_algorithm(populated):
-    assert populated.dijkstras_algorithm(5) == {7: 5, "Hello": 5}
+    dist, prev = populated.dijkstras_algorithm(5)
+    assert dist == {5: 0, 7: 30, 'Hello': 10}
+    assert prev == {7: 5, 'Hello': 5, 5: None}

@@ -110,11 +110,25 @@ class Graph(object):
         return visited
 
     def dijkstras_algorithm(self, source):
-        from linked_list import Node
-        uv = []
-        for key in self.graph:
-            uv.append(source: )
+        dist = {}
+        prev = {}
+        uv = {}
 
+        for key, val in self.graph.iteritems():
+            dist[key] = float("inf")
+            prev[key] = None
+            uv.setdefault(key, val)
+        dist[source] = 0
+        while uv:
+            next = min(uv, key=dist.get)
+            for neighbor, distance in uv[next].iteritems():
+                alt = dist[next] + distance
+                if alt < dist[neighbor]:
+                    dist[neighbor] = alt
+                    prev[neighbor] = next
+            uv.pop(next)
+
+        return dist, prev
 
 
 def construct_cyclic_graph():
