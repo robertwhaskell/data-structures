@@ -143,3 +143,7 @@ def test_breadth_first(cyclic):
     nodes = cyclic.breadth_first_traversal(1)
     for val in [1, 2, 3, 4, 6, 7, 8, 9]:
         assert val in nodes
+
+
+def test_dijkstras_algorithm(populated):
+    assert populated.dijkstras_algorithm(5) == {7: 5, "Hello": 5}
