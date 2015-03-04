@@ -100,8 +100,8 @@ class Graph(object):
         """
         visited = []
         q = [node]
-        while q:
-            vertex = q.pop()
+        while len(q) > 0:
+            vertex = q.pop(0)
             if vertex not in visited:
                 visited.append(vertex)
                 for edge in self.graph[vertex]:
