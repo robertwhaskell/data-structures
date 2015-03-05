@@ -80,7 +80,7 @@ def test_in_order_traversal_empty(empty_tree):
     genlist = []
     for n in iogen:
         genlist.append(n)
-    assert genlist == [None]
+    assert genlist == []
 
 
 def test_in_order_traversal_simple_tree(simple_tree):
@@ -96,7 +96,7 @@ def test_post_order_traversal_empty(empty_tree):
     genlist = []
     for n in iogen:
         genlist.append(n)
-    assert genlist == [None]
+    assert genlist == []
 
 
 def test_post_order_traversal_simple_tree(simple_tree):
@@ -111,7 +111,7 @@ def test_pre_order_traversal_empty(empty_tree):
     genlist = []
     for n in empty_tree.pre_order():
         genlist.append(n)
-    assert genlist == [None]
+    assert genlist == []
 
 
 def test_pre_order_traversal_simple_tree(simple_tree):

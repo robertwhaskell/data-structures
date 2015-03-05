@@ -79,11 +79,8 @@ class BinaryTree(object):
         return left_side - right_side
 
     def in_order(self):
-        if self.root is None:
-            yield None
-        else:
-            for n in self._in_order_helper(self.root, []):
-                yield n.val
+        for n in self._in_order_helper(self.root, []):
+            yield n.val
 
     def _in_order_helper(self, node, orderlist):
         if node is None:
@@ -95,11 +92,8 @@ class BinaryTree(object):
         return orderlist
 
     def pre_order(self):
-        if self.root is None:
-            yield None
-        else:
-            for n in self._pre_order_helper(self.root, []):
-                yield n.val
+        for n in self._pre_order_helper(self.root, []):
+            yield n.val
 
     def _pre_order_helper(self, node, orderlist):
         if node is None:
@@ -111,11 +105,8 @@ class BinaryTree(object):
         return orderlist
 
     def post_order(self):
-        if self.root is None:
-            yield None
-        else:
-            for n in self._post_order_helper(self.root, []):
-                yield n.val
+        for n in self._post_order_helper(self.root, []):
+            yield n.val
 
     def _post_order_helper(self, node, orderlist):
         if node is None:
@@ -127,7 +118,24 @@ class BinaryTree(object):
         return orderlist
 
     def breadth_first(self):
-        pass
+        if self.root is None:
+            return
+        for n in self._breadth_first_helper(self.root):
+            yield n.val
+
+    def _breadth_first_helper(self, node):
+        from collections import deque
+        visited = []
+        q = deque([node])
+        while len(q) > 0:
+            root = q.popleft()
+            if root not in visited:
+                visited.append(root)
+            if root.left_child:
+                q.append(root.left_child)
+            if root.right_child:
+                q.append(root.right_child)
+        return visited
 
 if __name__ == '__main__':
     from time import time
