@@ -73,3 +73,66 @@ def test_balance_one_node_tree_returns_1():
     t = BinaryTree()
     t.insert(1)
     assert t.balance() == 0
+
+
+def test_in_order_traversal_empty(empty_tree):
+    iogen = empty_tree.in_order()
+    genlist = []
+    for n in iogen:
+        genlist.append(n)
+    assert genlist == []
+
+
+def test_in_order_traversal_simple_tree(simple_tree):
+    iogen = simple_tree.in_order()
+    genlist = []
+    for n in iogen:
+        genlist.append(n)
+    assert genlist == [2, 5, 10, 17]
+
+
+def test_post_order_traversal_empty(empty_tree):
+    iogen = empty_tree.post_order()
+    genlist = []
+    for n in iogen:
+        genlist.append(n)
+    assert genlist == []
+
+
+def test_post_order_traversal_simple_tree(simple_tree):
+    iogen = simple_tree.post_order()
+    genlist = []
+    for n in iogen:
+        genlist.append(n)
+    assert genlist == [2, 17, 10, 5]
+
+
+def test_pre_order_traversal_empty(empty_tree):
+    genlist = []
+    for n in empty_tree.pre_order():
+        genlist.append(n)
+    assert genlist == [None]
+
+
+def test_pre_order_traversal_simple_tree(simple_tree):
+    iogen = simple_tree.pre_order()
+    genlist = []
+    for n in iogen:
+        genlist.append(n)
+    assert genlist == [5, 2, 10, 17]
+
+
+def test_breadth_first_traversal_empty(empty_tree):
+    iogen = empty_tree.breadth_first()
+    genlist = []
+    for n in iogen:
+        genlist.append(n)
+    assert genlist == []
+
+
+def test_breadth_first_traversal_simple_tree(simple_tree):
+    iogen = simple_tree.breadth_first()
+    genlist = []
+    for n in iogen:
+        genlist.append(n)
+    assert genlist == [5, 2, 10, 17]

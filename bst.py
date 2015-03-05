@@ -78,6 +78,31 @@ class BinaryTree(object):
             return 0
         return left_side - right_side
 
+    def in_order(self):
+        pass
+
+    def pre_order(self):
+        if self.root is None:
+            yield None
+        else:
+            for n in self._pre_order_helper(self.root, []):
+                yield n.val
+
+    def _pre_order_helper(self, node, orderlist):
+        if node is None:
+            return orderlist
+        if node not in orderlist:
+            orderlist.append(node)
+        orderlist = self._pre_order_helper(node.left_child, orderlist)
+        orderlist = self._pre_order_helper(node.right_child, orderlist)
+        return orderlist
+
+    def post_order(self):
+        pass
+
+    def breadth_first(self):
+        pass
+
 if __name__ == '__main__':
     from time import time
 
