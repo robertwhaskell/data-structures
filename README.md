@@ -47,6 +47,6 @@ Binary Tree
     Contains four different methods for traversal: in-order, pre-order,
     post-order, and breadth-first.
 References: Google, Google, Google, and also Wikipedia
-
+Collaborations: Robert Haskell & Joel Stanner (coders)
 [![Build Status](https://travis-ci.org/robertwhaskell/data-structures.svg?branch=weighted-graph)](https://travis-ci.org/robertwhaskell/data-structures)
     
