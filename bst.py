@@ -25,16 +25,17 @@ class BinaryTree(object):
                     else:
                         node.right_child = Tnode(val)
                         self.tree_size += 1
-                        node = node.right_child
+                        break
                 elif val < node.val:
                     if node.left_child:
                         node = node.left_child
                     else:
                         node.left_child = Tnode(val)
                         self.tree_size += 1
-                        node = node.left_child
+                        break
                 elif node.val == val:
                     break
+
     #     if not self.contains(val):
     #         self.root = self._insert_helper(val, self.root)
     #         self.tree_size += 1
