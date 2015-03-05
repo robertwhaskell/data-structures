@@ -79,7 +79,20 @@ class BinaryTree(object):
         return left_side - right_side
 
     def in_order(self):
-        pass
+        if self.root is None:
+            yield None
+        else:
+            for n in self._in_order_helper(self.root, []):
+                yield n.val
+
+    def _in_order_helper(self, node, orderlist):
+        if node is None:
+            return orderlist
+        orderlist = self._in_order_helper(node.left_child, orderlist)
+        if node not in orderlist:
+            orderlist.append(node)
+        orderlist = self._in_order_helper(node.right_child, orderlist)
+        return orderlist
 
     def pre_order(self):
         if self.root is None:
