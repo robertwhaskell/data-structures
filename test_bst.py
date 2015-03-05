@@ -55,5 +55,15 @@ def test_depth_on_simple_tree(simple_tree):
     assert simple_tree.depth() == 3
 
 
-def test_balance():
-    pass
+def test_balance(simple_tree):
+    assert simple_tree.balance() == -1
+
+
+def test_balance_empty_tree(empty_tree):
+    assert empty_tree.balance() == 0
+
+
+def test_balance_one_node_tree_returns_1():
+    t = BinaryTree()
+    t.insert(1)
+    assert t.balance() == 0

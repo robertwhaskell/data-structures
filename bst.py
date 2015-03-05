@@ -61,3 +61,15 @@ class BinaryTree(object):
                 return left_depth
             else:
                 return right_depth
+
+    def balance(self):
+        """Return positive if left side is higher, negitive if right side is."""
+        try:
+            left_side = self._depth_helper(self.root.left_child, 1)
+            print("testsfksdjfdskjfkd")
+            print self.root.right_child
+            right_side = self._depth_helper(self.root.right_child, 1)
+        except AttributeError:
+            print('empty')
+            return 0
+        return left_side - right_side
