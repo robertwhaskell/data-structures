@@ -34,9 +34,9 @@ def test_insert_into_simple_tree(simple_tree):
 
 
 def test_insert_duplicate(simple_tree):
-    assert simple_tree.size() == 4
+    assert simple_tree.size == 4
     simple_tree.insert(17)
-    assert simple_tree.size() == 4
+    assert simple_tree.size == 4
 
 
 def test_contains(simple_tree):
@@ -46,11 +46,11 @@ def test_contains(simple_tree):
 
 
 def test_size_on_empty_tree(empty_tree):
-    assert empty_tree.size() == 0
+    assert empty_tree.size == 0
 
 
 def test_size_on_simple_tree(simple_tree):
-    assert simple_tree.size() == 4
+    assert simple_tree.size == 4
 
 
 def test_depth_on_empty_tree(empty_tree):
