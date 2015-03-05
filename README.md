@@ -36,6 +36,8 @@ Graph
     A graph of nodes where each node can be connected to any other node.
     Note - node values must be immutable.
     Graph traversal resource: http://eddmann.com/posts/depth-first-search-and-breadth-first-search-in-python/
+Graph shortest path algorithms: Dijkstra's and Bellman-Ford.
+    Dijkstra's algorithm will find the shortest path between two nodes. Bellman-Ford also does this, but will handle negative edge weights. Use it in graphs that could contain negative weights.
 Collaborations: Robert Haskell & Nick Draper (coders)
 References: Google, Google, Google, and also Wikipedia
 
