@@ -89,8 +89,7 @@ class BinaryTree(object):
         if node is None:
             return orderlist
         orderlist = self._in_order_helper(node.left_child, orderlist)
-        if node not in orderlist:
-            orderlist.append(node)
+        orderlist.append(node)
         orderlist = self._in_order_helper(node.right_child, orderlist)
         return orderlist
 
@@ -104,8 +103,7 @@ class BinaryTree(object):
         """Helper for pre_order"""
         if node is None:
             return orderlist
-        if node not in orderlist:
-            orderlist.append(node)
+        orderlist.append(node)
         orderlist = self._pre_order_helper(node.left_child, orderlist)
         orderlist = self._pre_order_helper(node.right_child, orderlist)
         return orderlist
@@ -122,8 +120,7 @@ class BinaryTree(object):
             return orderlist
         orderlist = self._post_order_helper(node.left_child, orderlist)
         orderlist = self._post_order_helper(node.right_child, orderlist)
-        if node not in orderlist:
-            orderlist.append(node)
+        orderlist.append(node)
         return orderlist
 
     def breadth_first(self):
