@@ -1,6 +1,7 @@
 from bst import BinaryTree
 import pytest
 
+
 @pytest.fixture(scope="function")
 def simple_tree():
     t = BinaryTree()
@@ -11,15 +12,20 @@ def simple_tree():
     return t
 
 
+@pytest.fixture(scope="function")
+def empty_tree():
+    t = BinaryTree()
+    return t
+
+
 def test_binarytree():
     t = BinaryTree()
-    assert t.root == None
+    assert t.root is None
 
 
-def test_insert_into_empty_tree():
-    t = BinaryTree()
-    t.insert(5)
-    assert t.root.val == 5
+def test_insert_into_empty_tree(empty_tree):
+    empty_tree.insert(5)
+    assert empty_tree.root.val == 5
 
 
 def test_insert_into_simple_tree(simple_tree):
@@ -33,12 +39,20 @@ def test_contains(simple_tree):
     assert simple_tree.contains(10)
 
 
-def test_size():
-    pass
+def test_size_on_empty_tree(empty_tree):
+    assert empty_tree.size() == 0
 
 
-def test_depth():
-    pass
+def test_size_on_simple_tree(simple_tree):
+    assert simple_tree.size() == 4
+
+
+def test_depth_on_empty_tree(empty_tree):
+    assert empty_tree.depth() == 0
+
+
+def test_depth_on_simple_tree(simple_tree):
+    assert simple_tree.depth == 3
 
 
 def test_balance():
