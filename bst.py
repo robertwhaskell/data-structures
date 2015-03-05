@@ -61,7 +61,7 @@ class BinaryTree(object):
         return self._depth_helper(self.root, 0)
 
     def _depth_helper(self, node, depth_count):
-        """recursive heler for depth, digs through tree and counts levels"""
+        """recursive helper for depth, digs through tree and counts levels"""
         if node is None:
             return depth_count
         else:
@@ -70,7 +70,7 @@ class BinaryTree(object):
 
     def balance(self):
         """Return positive if left side is higher, 
-        negitive if right side is."""
+        negative if right side is."""
         try:
             left_side = self._depth_helper(self.root.left_child, 1)
             right_side = self._depth_helper(self.root.right_child, 1)
@@ -79,10 +79,13 @@ class BinaryTree(object):
         return left_side - right_side
 
     def in_order(self):
+        """Returns a list of all nodes in the order of left-child, parent,
+        right-child, recursively"""
         for n in self._in_order_helper(self.root, []):
             yield n.val
 
     def _in_order_helper(self, node, orderlist):
+        """Helper for in_order"""
         if node is None:
             return orderlist
         orderlist = self._in_order_helper(node.left_child, orderlist)
@@ -92,10 +95,13 @@ class BinaryTree(object):
         return orderlist
 
     def pre_order(self):
+        """Return a list of all nodes in the order of parent, then left-child,
+        then right-child, recursively"""
         for n in self._pre_order_helper(self.root, []):
             yield n.val
 
     def _pre_order_helper(self, node, orderlist):
+        """Helper for pre_order"""
         if node is None:
             return orderlist
         if node not in orderlist:
@@ -105,10 +111,13 @@ class BinaryTree(object):
         return orderlist
 
     def post_order(self):
+        """Return a list of all nodes in the order of left-child, then
+        right-child, then parant, recursively"""
         for n in self._post_order_helper(self.root, []):
             yield n.val
 
     def _post_order_helper(self, node, orderlist):
+        """post_order helper"""
         if node is None:
             return orderlist
         orderlist = self._post_order_helper(node.left_child, orderlist)
@@ -118,12 +127,14 @@ class BinaryTree(object):
         return orderlist
 
     def breadth_first(self):
+        """Return a list of nodes in level-order, from left to right"""
         if self.root is None:
             return
         for n in self._breadth_first_helper(self.root):
             yield n.val
 
     def _breadth_first_helper(self, node):
+        """breadth_first helper"""
         from collections import deque
         visited = []
         q = deque([node])
