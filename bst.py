@@ -129,8 +129,7 @@ class BinaryTree(object):
         q = deque([node])
         while len(q) > 0:
             root = q.popleft()
-            if root not in visited:
-                visited.append(root)
+            visited.append(root)
             if root.left_child:
                 q.append(root.left_child)
             if root.right_child:
