@@ -130,6 +130,29 @@ class Graph(object):
 
         return dist, prev
 
+    def bellman_ford_algorithm(self, source):
+        dist = {}
+        prev = {}
+
+        for node in self.nodes():
+            if node == source:
+                dist[node] = 0
+            else:
+                dist[node] = float("inf")
+                prev[node] = None
+
+        for node in self.nodes():
+            for node1, node2, weight in self.edges():
+                if dist[node1] + weight < dist[node2]:
+                    dist[node2] = dist[node1] + weight
+                    prev[node2] = node1
+
+        for node1, node2, weight in self.edges():
+            if dist[node1] + weight < dist[node2]:
+                raise ValueError("Graph contains a negative-weight cycle")
+
+        return dist, prev
+
 
 def construct_cyclic_graph():
     g = Graph()

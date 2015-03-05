@@ -39,6 +39,18 @@ def cyclic():
     return g
 
 
+@pytest.fixture
+def negative_graph():
+    g = Graph()
+    g.add_edge(1, 2, 10)
+    g.add_edge(1, 3, -4)
+    g.add_edge(2, 4, 6)
+    g.add_edge(3, 4, 9)
+    g.add_edge(4, 5, 8)
+    g.add_edge(2, 5, -6)
+    return g
+
+
 def test_graph_constructor():
     assert Graph().graph == {}
 
@@ -149,3 +161,21 @@ def test_dijkstras_algorithm(populated):
     dist, prev = populated.dijkstras_algorithm(5)
     assert dist == {5: 0, 7: 30, 'Hello': 10}
     assert prev == {7: 5, 'Hello': 5, 5: None}
+
+
+def test_dijkstras_algorithm_cyclic(cyclic):
+    dist, prev = cyclic.dijkstras_algorithm(1)
+    assert dist == {1: 0, 2: 1, 3: 3, 4: 5, 5: float("inf"), 6: 3, 7: 7, 8: 1001, 9: 2}
+    assert prev == {1: None, 2: 1, 3: 1, 4: 2, 5: None, 6: 1, 7: 3, 8: 2, 9: 2}
+
+
+def test_bellman_ford_algorithm(negative_graph):
+    dist, prev = negative_graph.bellman_ford_algorithm(1)
+    assert dist == {1: 0, 2: 10, 3: -4, 4: 5, 5: 4}
+    assert prev == {2: 1, 3: 1, 4: 3, 5: 2}
+
+
+def test_bellman_ford_against_dijkstra_cyclic(cyclic):
+    dist, prev = cyclic.dijkstras_algorithm(1)
+    assert dist == {1: 0, 2: 1, 3: 3, 4: 5, 5: float("inf"), 6: 3, 7: 7, 8: 1001, 9: 2}
+    assert prev == {1: None, 2: 1, 3: 1, 4: 2, 5: None, 6: 1, 7: 3, 8: 2, 9: 2}
