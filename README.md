@@ -39,6 +39,13 @@ Graph
 Graph shortest path algorithms: Dijkstra's and Bellman-Ford.
     Dijkstra's algorithm will find the shortest path between two nodes. Bellman-Ford also does this, but will handle negative edge weights. Use it in graphs that could contain negative weights.
 Collaborations: Robert Haskell & Nick Draper (coders)
+
+Binary Tree
+    A list of linked nodes that separate into left/right children according
+    to value - less-than to the left, greater-than to the right.
+
+    Contains four different methods for traversal: in-order, pre-order,
+    post-order, and breadth-first.
 References: Google, Google, Google, and also Wikipedia
 
 [![Build Status](https://travis-ci.org/robertwhaskell/data-structures.svg?branch=weighted-graph)](https://travis-ci.org/robertwhaskell/data-structures)
