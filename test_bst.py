@@ -52,7 +52,7 @@ def test_depth_on_empty_tree(empty_tree):
 
 
 def test_depth_on_simple_tree(simple_tree):
-    assert simple_tree.depth == 3
+    assert simple_tree.depth() == 3
 
 
 def test_balance():

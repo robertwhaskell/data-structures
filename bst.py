@@ -33,6 +33,7 @@ class BinaryTree(object):
         return self._contains_helper(val, self.root)
 
     def _contains_helper(self, val, node):
+        """recursive helper for contains that digs through tree for value"""
         if node is None:
             return False
         elif node.val == val:
@@ -44,3 +45,19 @@ class BinaryTree(object):
 
     def size(self):
         return self.tree_size
+
+    def depth(self):
+        """returns number of levels in tree"""
+        return self._depth_helper(self.root, 0)
+
+    def _depth_helper(self, node, depth_count):
+        """recursive heler for depth, digs through tree and counts levels"""
+        if node is None:
+            return depth_count
+        else:
+            left_depth = self._depth_helper(node.left_child, depth_count + 1)
+            right_depth = self._depth_helper(node.right_child, depth_count + 1)
+            if left_depth > right_depth:
+                return left_depth
+            else:
+                return right_depth
