@@ -13,8 +13,9 @@ class BinaryTree(object):
 
     def insert(self, val):
         """Insert the value into the tree"""
-        self.root = self._insert_helper(val, self.root)
-        self.tree_size += 1
+        if not self.contains(val):
+            self.root = self._insert_helper(val, self.root)
+            self.tree_size += 1
 
     def _insert_helper(self, val, node):
         """Recursive function to place the value into the tree via the rules of
@@ -73,3 +74,17 @@ class BinaryTree(object):
             print('empty')
             return 0
         return left_side - right_side
+
+if __name__ == '__main__':
+    from time import time
+    import random
+    nums = random.sample(range(1, 1000000), 999999)
+    t = BinaryTree()
+
+    timer = time()
+    t.insert(50.1)
+    t.contains(50.1)
+    print 'searches for thing that exists:'+str(time() - timer)
+    timer = time()
+    t.contains(.1)
+    print 'searches for thing that does not exit:'+str(time() - timer)

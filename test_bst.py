@@ -33,6 +33,12 @@ def test_insert_into_simple_tree(simple_tree):
     assert simple_tree.root.left_child.left_child.val == 1
 
 
+def test_insert_duplicate(simple_tree):
+    assert simple_tree.size() == 4
+    simple_tree.insert(17)
+    assert simple_tree.size() == 4
+
+
 def test_contains(simple_tree):
     assert simple_tree.contains(5)
     assert simple_tree.contains(17)
