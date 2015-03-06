@@ -136,16 +136,14 @@ class BinaryTree(object):
     def _breadth_first_helper(self, node):
         """breadth_first helper"""
         from collections import deque
-        visited = []
         q = deque([node])
         while len(q) > 0:
             root = q.popleft()
-            visited.append(root)
+            yield root
             if root.left_child:
                 q.append(root.left_child)
             if root.right_child:
                 q.append(root.right_child)
-        return visited
 
 if __name__ == '__main__':
     from time import time
