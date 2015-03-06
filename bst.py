@@ -96,21 +96,22 @@ class BinaryTree(object):
     def pre_order(self):
         """Return a list of all nodes in the order of parent, then left-child,
         then right-child, recursively"""
-        for n in self._pre_order_helper(self.root, []):
-            yield n.val
+        for node in self._pre_order_helper(self.root):
+            yield node.val
 
-    def _pre_order_helper(self, node, orderlist):
+    def _pre_order_helper(self, node):
         """Helper for pre_order"""
         if node is None:
-            return orderlist
-        orderlist.append(node)
-        orderlist = self._pre_order_helper(node.left_child, orderlist)
-        orderlist = self._pre_order_helper(node.right_child, orderlist)
-        return orderlist
+            return
+        yield node
+        for n in self._pre_order_helper(node.left_child):
+            yield n
+        for n in self._pre_order_helper(node.right_child):
+            yield n
 
     def post_order(self):
         """Return a list of all nodes in the order of left-child, then
-        right-child, then parant, recursively"""
+        right-child, then parent, recursively"""
         for n in self._post_order_helper(self.root, []):
             yield n.val
 
