@@ -113,17 +113,18 @@ class BinaryTree(object):
     def post_order(self):
         """Return a list of all nodes in the order of left-child, then
         right-child, then parent, recursively"""
-        for n in self._post_order_helper(self.root, []):
+        for n in self._post_order_helper(self.root):
             yield n.val
 
-    def _post_order_helper(self, node, orderlist):
+    def _post_order_helper(self, node):
         """post_order helper"""
         if node is None:
-            return orderlist
-        orderlist = self._post_order_helper(node.left_child, orderlist)
-        orderlist = self._post_order_helper(node.right_child, orderlist)
-        orderlist.append(node)
-        return orderlist
+            return
+        for n in self._post_order_helper(node.left_child):
+            yield n
+        for n in self._post_order_helper(node.right_child):
+            yield n
+        yield node
 
     def breadth_first(self):
         """Return a list of nodes in level-order, from left to right"""
