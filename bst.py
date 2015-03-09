@@ -162,6 +162,16 @@ class BinaryTree(object):
                     else:
                         return False
                 elif node.val == val:
+                    # found node.
+                    # if node has no kids, remove node:
+                    if node.right_child is None and node.left_child is None:
+                        node is None
+                    # if node has children, make it equal to the rightmost
+                    # node under it's left child
+                    if node.left_child:
+                        swap_node = self._find_second_largest(node)
+                        node.val = swap_node.val
+                        swap_node = node.left_child
                     return True
 
     def _find_second_largest(self, node):
@@ -170,8 +180,8 @@ class BinaryTree(object):
         largest_child = node.right_child
         iter_node = node.left_child
         while iter_node:
-            iter_node = iter_node.right_child
             largest_child = iter_node
+            iter_node = iter_node.right_child
         return largest_child
 
 if __name__ == '__main__':
