@@ -26,14 +26,18 @@ class BinaryTree(object):
                     if node.right_child:
                         node = node.right_child
                     else:
-                        node.right_child = Tnode(val=val, parent=node, is_right=True)
+                        node.right_child = Tnode(val=val,
+                                                 parent=node,
+                                                 is_right=True)
                         self.size += 1
                         break
                 elif val < node.val:
                     if node.left_child:
                         node = node.left_child
                     else:
-                        node.left_child = Tnode(val=val, parent=node, is_left=True)
+                        node.left_child = Tnode(val=val,
+                                                parent=node,
+                                                is_left=True)
                         self.size += 1
                         break
                 elif node.val == val:
