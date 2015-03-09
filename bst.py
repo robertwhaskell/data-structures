@@ -145,6 +145,35 @@ class BinaryTree(object):
             if root.right_child:
                 q.append(root.right_child)
 
+    def delete(self, val):
+        if not self.root:
+            return False
+        else:
+            node = self.root
+            while node:
+                if val > node.val:
+                    if node.right_child:
+                        node = node.right_child
+                    else:
+                        return False
+                elif val < node.val:
+                    if node.left_child:
+                        node = node.left_child
+                    else:
+                        return False
+                elif node.val == val:
+                    return True
+
+    def _find_second_largest(self, node):
+        # value has been found.
+        # find the next largest node
+        largest_child = node.right_child
+        iter_node = node.left_child
+        while iter_node:
+            iter_node = iter_node.right_child
+            largest_child = iter_node
+        return largest_child
+
 if __name__ == '__main__':
     from time import time
 
