@@ -10,6 +10,7 @@ class Tnode(object):
 
 
 class BinaryTree(object):
+    """Implementaion of a binary tree with methods to manipulate said tree"""
     def __init__(self):
         self.root = None
         self.size = 0
@@ -44,7 +45,7 @@ class BinaryTree(object):
                     break
 
     def contains(self, val):
-        """If node is found in tree, return true, else false"""
+        """If node is found in tree, return the node, else False"""
         if not self.root:
             return False
         else:
@@ -61,7 +62,7 @@ class BinaryTree(object):
                     else:
                         return False
                 elif node.val == val:
-                    return True
+                    return node
 
     def depth(self):
         """returns number of levels in tree"""
@@ -76,7 +77,7 @@ class BinaryTree(object):
                        self._depth_helper(node.right_child, depth_count + 1))
 
     def balance(self):
-        """Return positive if left side is higher, 
+        """Return positive if left side is higher,
         negative if right side is."""
         try:
             left_side = self._depth_helper(self.root.left_child, 1)
@@ -153,49 +154,39 @@ class BinaryTree(object):
                 q.append(root.right_child)
 
     def delete(self, val):
-        if not self.root:
-            return None
-        else:
-            node = self.root
-            while node:
-                if val > node.val:
-                    if node.right_child:
-                        node = node.right_child
+        """Remove a node from the tree if it exists, connect child nodes to new
+        parents"""
+        node = self.contains(val)
+        try:
+            self.size -= 1
+            # found node.
+            # if node has no kids, remove node:
+            if node.right_child is None and node.left_child is None:
+                if node.is_left:
+                    node.parent.left_child = None
+                elif node.is_right:
+                    node.parent.right_child = None
+                return
+            else:
+                swap_node = self._find_second_largest(node)
+                node.val = swap_node.val
+                if swap_node.is_left:
+                    if swap_node.left_child:
+                        swap_node.parent.left_child = swap_node.left_child
                     else:
-                        return None
-                elif val < node.val:
-                    if node.left_child:
-                        node = node.left_child
+                        swap_node.parent.left_child = swap_node.right_child
+                elif swap_node.is_right:
+                    if swap_node.left_child:
+                        swap_node.parent.right_child = swap_node.left_child
                     else:
-                        return None
-                elif node.val == val:
-                    self.size -= 1
-                    # found node.
-                    # if node has no kids, remove node:
-                    if node.right_child is None and node.left_child is None:
-                        if node.is_left:
-                            node.parent.left_child = None
-                        elif node.is_right:
-                            node.parent.right_child = None
-                        return
-                    else:
-                        swap_node = self._find_second_largest(node)
-                        node.val = swap_node.val
-                        if swap_node.is_left:
-                            if swap_node.left_child:
-                                swap_node.parent.left_child = swap_node.left_child
-                            else:
-                                swap_node.parent.left_child = swap_node.right_child
-                        elif swap_node.is_right:
-                            if swap_node.left_child:
-                                swap_node.parent.right_child = swap_node.left_child
-                            else:
-                                swap_node.parent.right_child = swap_node.right_child
-                        return
+                        swap_node.parent.right_child = swap_node.right_child
+                return
+        except AttributeError:
+            return
 
     def _find_second_largest(self, node):
-        # value has been found.
-        # find the next largest node
+        """Helper method for delete"""
+        # value has been found, find the next largest node
         largest_child = node.right_child
         iter_node = node.left_child
         while iter_node:

@@ -69,6 +69,15 @@ def test_contains(simple_tree):
     assert simple_tree.contains(10)
 
 
+def test_contains_works_with_0_node(simple_tree):
+    simple_tree.insert(0)
+    assert simple_tree.contains(0)
+
+
+def test_contains_with_non_existent_node(simple_tree):
+    assert simple_tree.contains(42) is False
+
+
 def test_size_on_empty_tree(empty_tree):
     assert empty_tree.size == 0
 
