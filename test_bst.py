@@ -3,6 +3,29 @@ import pytest
 
 
 @pytest.fixture(scope="function")
+def complex_tree():
+    t = BinaryTree()
+    t.insert(100)
+    t.insert(80)
+    t.insert(60)
+    t.insert(40)
+    t.insert(20)
+    t.insert(50)
+    t.insert(70)
+    t.insert(90)
+    t.insert(85)
+    t.insert(95)
+    t.insert(120)
+    t.insert(140)
+    t.insert(160)
+    t.insert(180)
+    t.insert(110)
+    t.insert(175)
+    t.insert(170)
+    t.insert(176)
+    return t
+
+@pytest.fixture(scope="function")
 def simple_tree():
     t = BinaryTree()
     t.insert(5)
@@ -169,7 +192,10 @@ def test_delete_on_node_with_two_children(simple_tree):
     assert genlist == [2, 10, 17]
 
 
-
-
-
-
+def test_delete_on_complext_tree_root(complex_tree):
+    simple_tree.delete(100)
+    iogen = simple_tree.in_order()
+    genlist = []
+    for n in iogen:
+        genlist.append(n)
+    assert genlist == [20, 40, 50, 60, 70, 80, 90, 85, 95, 110, 120, 140, 160, 170, 175, 176, 180]
