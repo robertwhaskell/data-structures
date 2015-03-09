@@ -192,9 +192,9 @@ def test_delete_on_node_with_two_children(simple_tree):
     assert genlist == [2, 10, 17]
 
 
-def test_delete_on_complext_tree_root(complex_tree):
-    simple_tree.delete(100)
-    iogen = simple_tree.in_order()
+def test_delete_on_complex_tree_root(complex_tree):
+    complex_tree.delete(100)
+    iogen = complex_tree.in_order()
     genlist = []
     for n in iogen:
         genlist.append(n)

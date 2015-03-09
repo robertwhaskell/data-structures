@@ -147,7 +147,7 @@ class BinaryTree(object):
 
     def delete(self, val):
         if not self.root:
-            return False
+            return None
         else:
             node = self.root
             while node:
@@ -155,24 +155,26 @@ class BinaryTree(object):
                     if node.right_child:
                         node = node.right_child
                     else:
-                        return False
+                        return None
                 elif val < node.val:
                     if node.left_child:
                         node = node.left_child
                     else:
-                        return False
+                        return None
                 elif node.val == val:
+                    print node.val
                     # found node.
                     # if node has no kids, remove node:
                     if node.right_child is None and node.left_child is None:
-                        node is None
+                        node = None
+                        print 'node should be gone'
+                        return
                     # if node has children, make it equal to the rightmost
                     # node under it's left child
-                    if node.left_child:
-                        swap_node = self._find_second_largest(node)
-                        node.val = swap_node.val
-                        swap_node = node.left_child
-                    return True
+                    swap_node = self._find_second_largest(node)
+                    node.val = swap_node.val
+                    swap_node = swap_node.left_child
+                    return
 
     def _find_second_largest(self, node):
         # value has been found.
