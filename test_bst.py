@@ -25,6 +25,7 @@ def complex_tree():
     t.insert(176)
     return t
 
+
 @pytest.fixture(scope="function")
 def simple_tree():
     t = BinaryTree()
@@ -198,4 +199,30 @@ def test_delete_on_complex_tree_root(complex_tree):
     genlist = []
     for n in iogen:
         genlist.append(n)
-    assert genlist == [20, 40, 50, 60, 70, 80, 85, 90, 95, 110, 120, 140, 160, 170, 175, 176, 180]
+    assert genlist == [20, 40, 50, 60, 70, 80, 85, 90, 95, 110, 120, 140, 160,
+                       170, 175, 176, 180]
+
+
+def test_delete_sequence_complex_tree(complex_tree):
+    complex_tree.delete(100)
+    complex_tree.delete(120)
+    complex_tree.delete(80)
+    complex_tree.delete(180)
+    iogen = complex_tree.in_order()
+    genlist = []
+    for n in iogen:
+        genlist.append(n)
+    assert genlist == [20, 40, 50, 60, 70, 85, 90, 95, 110, 140, 160,
+                       170, 175, 176]
+
+
+def test_delete_keeps_size_accurate(complex_tree):
+    assert complex_tree.size == 18
+    iogen = complex_tree.in_order()
+    genlist = []
+    for n in iogen:
+        genlist.append(n)
+    complex_tree.delete(100)
+    complex_tree.delete(120)
+    complex_tree.delete(80)
+    assert 15 == complex_tree.size

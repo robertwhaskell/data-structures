@@ -165,11 +165,10 @@ class BinaryTree(object):
                     else:
                         return None
                 elif node.val == val:
-                    print node.val
+                    self.size -= 1
                     # found node.
                     # if node has no kids, remove node:
                     if node.right_child is None and node.left_child is None:
-                        # import pdb; pdb.set_trace()
                         if node.is_left:
                             node.parent.left_child = None
                         elif node.is_right:
