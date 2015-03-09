@@ -167,14 +167,16 @@ class BinaryTree(object):
                     # if node has no kids, remove node:
                     if node.right_child is None and node.left_child is None:
                         node = None
+                        print node
                         print 'node should be gone'
-                        return
-                    # if node has children, make it equal to the rightmost
-                    # node under it's left child
-                    swap_node = self._find_second_largest(node)
-                    node.val = swap_node.val
-                    swap_node = swap_node.left_child
-                    return
+                        print self.root.val
+                        print self.root.left_child.val
+                    else:
+                        # if node has children, make it equal to the rightmost
+                        # node under it's left child
+                        swap_node = self._find_second_largest(node)
+                        node.val = swap_node.val
+                        swap_node = swap_node.left_child
 
     def _find_second_largest(self, node):
         # value has been found.
