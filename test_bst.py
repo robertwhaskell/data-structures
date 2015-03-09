@@ -137,3 +137,39 @@ def test_breadth_first_traversal_simple_tree(simple_tree):
         genlist.append(n)
     assert genlist == [5, 2, 10, 17]
 
+
+def test_delete_empty_tree(empty_tree):
+    assert empty_tree.delete(100) is None
+
+
+def test_delete_on_node_with_no_children(simple_tree):
+    simple_tree.delete(2)
+    iogen = simple_tree.in_order()
+    genlist = []
+    for n in iogen:
+        genlist.append(n)
+    assert genlist == [5, 10, 17]
+
+
+def test_delete_on_node_with_one_child(simple_tree):
+    simple_tree.delete(10)
+    iogen = simple_tree.in_order()
+    genlist = []
+    for n in iogen:
+        genlist.append(n)
+    assert genlist == [2, 5, 17]
+
+
+def test_delete_on_node_with_two_children(simple_tree):
+    simple_tree.delete(5)
+    iogen = simple_tree.in_order()
+    genlist = []
+    for n in iogen:
+        genlist.append(n)
+    assert genlist == [2, 10, 17]
+
+
+
+
+
+
