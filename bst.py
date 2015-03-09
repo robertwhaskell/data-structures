@@ -1,9 +1,12 @@
 class Tnode(object):
     """Binary Tree Node Object"""
-    def __init__(self, val):
+    def __init__(self, val=None, parent=None, is_right=False, is_left=False):
         self.val = val
         self.right_child = None
         self.left_child = None
+        self.is_right = is_right
+        self.is_left = is_left
+        self.parent = parent
 
 
 class BinaryTree(object):
@@ -23,14 +26,14 @@ class BinaryTree(object):
                     if node.right_child:
                         node = node.right_child
                     else:
-                        node.right_child = Tnode(val)
+                        node.right_child = Tnode(val=val, parent=node, is_right=True)
                         self.size += 1
                         break
                 elif val < node.val:
                     if node.left_child:
                         node = node.left_child
                     else:
-                        node.left_child = Tnode(val)
+                        node.left_child = Tnode(val=val, parent=node, is_left=True)
                         self.size += 1
                         break
                 elif node.val == val:
@@ -166,17 +169,26 @@ class BinaryTree(object):
                     # found node.
                     # if node has no kids, remove node:
                     if node.right_child is None and node.left_child is None:
-                        node = None
-                        print node
-                        print 'node should be gone'
-                        print self.root.val
-                        print self.root.left_child.val
+                        # import pdb; pdb.set_trace()
+                        if node.is_left:
+                            node.parent.left_child = None
+                        elif node.is_right:
+                            node.parent.right_child = None
+                        return
                     else:
-                        # if node has children, make it equal to the rightmost
-                        # node under it's left child
                         swap_node = self._find_second_largest(node)
                         node.val = swap_node.val
-                        swap_node = swap_node.left_child
+                        if swap_node.is_left:
+                            if swap_node.left_child:
+                                swap_node.parent.left_child = swap_node.left_child
+                            else:
+                                swap_node.parent.left_child = swap_node.right_child
+                        elif swap_node.is_right:
+                            if swap_node.left_child:
+                                swap_node.parent.right_child = swap_node.left_child
+                            else:
+                                swap_node.parent.right_child = swap_node.right_child
+                        return
 
     def _find_second_largest(self, node):
         # value has been found.

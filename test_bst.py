@@ -198,4 +198,4 @@ def test_delete_on_complex_tree_root(complex_tree):
     genlist = []
     for n in iogen:
         genlist.append(n)
-    assert genlist == [20, 40, 50, 60, 70, 80, 90, 85, 95, 110, 120, 140, 160, 170, 175, 176, 180]
+    assert genlist == [20, 40, 50, 60, 70, 80, 85, 90, 95, 110, 120, 140, 160, 170, 175, 176, 180]
