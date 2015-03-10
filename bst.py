@@ -196,12 +196,16 @@ class BinaryTree(object):
         return largest_child
 
     def balance_tree(self):
+        """returns a balanced tree, with a depth no greater than abs[1]"""
         genlist = []
         for n in self.in_order():
             genlist.append(n)
         self._make_balanced_tree(genlist)
+        return self
 
     def _make_balanced_tree(self, value_list):
+        """takes an ordered list of values, then reconstructs our tree 
+        so that it's balanced"""
         try:
             self.root = Tnode(val=value_list[len(value_list)/2])
             left_list = value_list[:(len(value_list)/2)]
