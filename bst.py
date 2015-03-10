@@ -195,6 +195,25 @@ class BinaryTree(object):
             iter_node = iter_node.right_child
         return largest_child
 
+    def balance_tree(self):
+        genlist = []
+        for n in self.in_order():
+            genlist.append(n)
+        self._make_balanced_tree(genlist)
+
+    def _make_balanced_tree(self, value_list):
+        try:
+            self.root = Tnode(val=value_list[len(value_list)/2])
+            left_list = value_list[:(len(value_list)/2)]
+            right_list = value_list[(len(value_list)/2 + 1):]
+            while len(left_list) > 0:
+                self.insert(left_list.pop(len(left_list)/2))
+                if len(right_list) > 0:
+                    self.insert(right_list.pop(len(right_list)/2))
+        except IndexError:
+            pass
+
+
 if __name__ == '__main__':
     from time import time
 

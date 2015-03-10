@@ -24,6 +24,7 @@ def balanced_tree():
     t.insert(8)
     t.insert(7)
     t.insert(9)
+    return t
 
 
 @pytest.fixture(scope="function")
