@@ -3,6 +3,30 @@ import pytest
 
 
 @pytest.fixture(scope="function")
+def unbalanced_tree():
+    t = BinaryTree()
+    t.insert(5)
+    t.insert(6)
+    t.insert(7)
+    t.insert(8)
+    t.insert(9)
+    t.insert(4)
+    return t
+
+
+@pytest.fixture(scope="function")
+def balanced_tree():
+    t = BinaryTree()
+    t.insert(5)
+    t.insert(2)
+    t.insert(1)
+    t.insert(3)
+    t.insert(8)
+    t.insert(7)
+    t.insert(9)
+
+
+@pytest.fixture(scope="function")
 def complex_tree():
     t = BinaryTree()
     t.insert(100)
@@ -235,3 +259,22 @@ def test_delete_keeps_size_accurate(complex_tree):
     complex_tree.delete(120)
     complex_tree.delete(80)
     assert 15 == complex_tree.size
+
+
+def test_unbalanced_tree_balancing(unbalanced_tree):
+    assert unbalanced_tree.balance() == -3
+    unbalanced_tree.balance_tree()
+    b = unbalanced_tree.balance()
+    assert b < 2 and b > -2
+
+
+def test_balanced_tree_balancing(balanced_tree):
+    assert balanced_tree.balance() == 0
+    b = balanced_tree.balance_tree()
+    balanced_tree == b
+
+
+def test_balance_tree_empty_tree(empty_tree):
+    assert empty_tree.balance() == 0
+    empty_tree.balance()
+    assert empty_tree.balance() == 0

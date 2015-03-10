@@ -158,7 +158,8 @@ class BinaryTree(object):
         parents"""
         node = self.contains(val)
         try:
-            self.size -= 1
+            if node:
+                self.size -= 1
             # found node.
             # if node has no kids, remove node:
             if node.right_child is None and node.left_child is None:
