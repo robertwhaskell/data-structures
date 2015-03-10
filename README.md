@@ -39,6 +39,7 @@ Collaborations: Robert Haskell & Nick Draper (coders)
     - Contains four different methods for traversal: 
       - in-order, pre-order, post-order, and breadth-first.  
     - Contains a method to delete nodes.
+    - Contains a method to balance the tree
   
 References: Google, Google, Google, and also Wikipedia  
-Collaborations: Robert Haskell & Joel Stanner (coders)  
+Collaborations: Robert Haskell & Joel Stanner (coders)
