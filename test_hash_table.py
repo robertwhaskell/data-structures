@@ -10,15 +10,15 @@ def empty_hash():
 @pytest.fixture(scope='function')
 def populated_hash():
     h = Hash_Table()
-    h.set('pearkey', 'pear')
-    h.set('orangekey', 'orange')
-    h.set('applekey', 'applekey')
+    h.set('pear', 'pear')
+    h.set('orange', 'orange')
+    h.set('apple', 'apple')
     return h
 
 
 def test_hash_init_empty():
     h = Hash_Table()
-    assert h.hash_table == [None]
+    assert h.hash_table == [None] * 10
 
 
 def test_hash_init_with_table_size():
@@ -27,12 +27,12 @@ def test_hash_init_with_table_size():
 
 
 def test_get(populated_hash):
-    assert populated_hash.get('pearkey') == 'pear'
+    assert populated_hash.get('pear') == 'pear'
 
 
 def test_set(empty_hash):
-    empty_hash.set('plumkey', 'plum')
-    assert empty_hash.get('plumkey') == 'plum'
+    empty_hash.set('plum', 'plum')
+    assert empty_hash.get('plum') == 'plum'
 
 
 def test_hash(empty_hash):
