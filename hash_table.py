@@ -12,14 +12,14 @@ class Hash_Table(object):
         raise KeyError("I don't know how, but this key has no value")
 
     def set(self, key, val):
-        try:
-            key_hash = self.hash(key)
-            if self.hash_table[key_hash] is None:
-                self.hash_table[key_hash] = [val]
-            else:
-                self.hash_table[key_hash].append(val)
-        except TypeError:
+        if type(key) != str:
             raise TypeError('only accepts strings')
+
+        key_hash = self.hash(key)
+        if self.hash_table[key_hash] is None:
+            self.hash_table[key_hash] = [val]
+        else:
+            self.hash_table[key_hash].append(val)
 
     def hash(self, key):
         total = 0

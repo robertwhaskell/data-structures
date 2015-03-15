@@ -1,6 +1,7 @@
 import pytest
 from hash_table import Hash_Table
 
+
 @pytest.fixture(scope='function')
 def empty_hash():
     h = Hash_Table()
@@ -48,3 +49,18 @@ def test_bucket_exists_in_case_of_collision(populated_hash):
 def test_set_accepts_only_strings(empty_hash):
     with pytest.raises(TypeError):
         empty_hash.set(5, 5)
+    with pytest.raises(TypeError):
+        empty_hash.set(['hello'], ['hello'])
+    with pytest.raises(TypeError):
+        empty_hash.set({'hello': 'hello'},{'hello': 'hello'})
+
+
+def test_get_with_huge_hash():
+    h = Hash_Table(1024)
+    wordlist = [line.strip() for line in open('/usr/share/dict/words')]
+
+    for word in wordlist:
+        h.set(word, word)
+
+    for word in wordlist:
+        assert word == h.get(word)
