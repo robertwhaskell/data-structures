@@ -37,3 +37,14 @@ def test_set(empty_hash):
 
 def test_hash(empty_hash):
     assert empty_hash.hash('abc') == 294 % len(empty_hash.hash_table)
+
+
+def test_bucket_exists_in_case_of_collision(populated_hash):
+    populated_hash.set('elppa', 'elppa')
+    key_hash = populated_hash.hash('elppa')
+    assert populated_hash.hash_table[key_hash] == ['apple', 'elppa']
+
+
+def test_set_accepts_only_strings(empty_hash):
+    with pytest.raises(TypeError):
+        empty_hash.set(5, 5)
