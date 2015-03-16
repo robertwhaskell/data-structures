@@ -23,3 +23,4 @@ def test_insertion_sort_on_reverse_order_list():
 
 def test_insertion_sort_strings():
     assert insertion_sort(['a', 'd', 'b', 'c']) == ['a', 'b', 'c', 'd']
+
