@@ -61,12 +61,12 @@ def test_set_overwrites_duplicate_keys(populated_hash):
     assert populated_hash.get('apple_key') == 'new_apple_val'
 
 
-def test_get_with_huge_hash():
-    h = Hash_Table(1024)
-    wordlist = [line.strip() for line in open('/usr/share/dict/words')]
+# def test_get_with_huge_hash():
+#     h = Hash_Table(1024)
+#     wordlist = [line.strip() for line in open('/usr/share/dict/words')]
 
-    for word in wordlist:
-        h.set(word, word)
+#     for word in wordlist:
+#         h.set(word, word)
 
-    for word in wordlist:
-        assert word == h.get(word)
+#     for word in wordlist:
+#         assert word == h.get(word)
