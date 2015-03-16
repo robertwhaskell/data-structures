@@ -20,6 +20,7 @@ class Hash_Table(object):
         '''
         Hash the key, place the value in the hashed bucket. If the bucket
         is not empty, append the value to the list of items in the bucket.
+        If the key is duplicate, overwrites previous key.
         '''
         if type(key) != str:
             raise TypeError('only accepts strings')
@@ -28,6 +29,10 @@ class Hash_Table(object):
         if self.hash_table[key_hash] is None:
             self.hash_table[key_hash] = [(key, val)]
         else:
+            for i in range(len(self.hash_table[key_hash])):
+                if self.hash_table[key_hash][i][0] == key:
+                    self.hash_table[key_hash][i] = (key, val)
+                    return
             self.hash_table[key_hash].append((key, val))
 
     def hash(self, key):
