@@ -11,9 +11,9 @@ def empty_hash():
 @pytest.fixture(scope='function')
 def populated_hash():
     h = Hash_Table()
-    h.set('pear', 'pear')
-    h.set('orange', 'orange')
-    h.set('apple', 'apple')
+    h.set('pear_key', 'pear_val')
+    h.set('orange_key', 'orange_val')
+    h.set('apple_key', 'apple_val')
     return h
 
 
@@ -28,12 +28,12 @@ def test_hash_init_with_table_size():
 
 
 def test_get(populated_hash):
-    assert populated_hash.get('pear') == 'pear'
+    assert populated_hash.get('pear_key') == 'pear_val'
 
 
 def test_set(empty_hash):
-    empty_hash.set('plum', 'plum')
-    assert empty_hash.get('plum') == 'plum'
+    empty_hash.set('plum_key', 'plum_val')
+    assert empty_hash.get('plum_key') == 'plum_val'
 
 
 def test_hash(empty_hash):
@@ -41,9 +41,9 @@ def test_hash(empty_hash):
 
 
 def test_bucket_exists_in_case_of_collision(populated_hash):
-    populated_hash.set('elppa', 'elppa')
-    key_hash = populated_hash.hash('elppa')
-    assert populated_hash.hash_table[key_hash] == ['apple', 'elppa']
+    populated_hash.set('elppa_key', 'elppa_val')
+    key_hash = populated_hash.hash('elppa_key')
+    assert populated_hash.hash_table[key_hash] == [('apple_key', 'apple_val'), ('elppa_key', 'elppa_val')]
 
 
 def test_set_accepts_only_strings(empty_hash):
@@ -53,11 +53,6 @@ def test_set_accepts_only_strings(empty_hash):
         empty_hash.set(['hello'], ['hello'])
     with pytest.raises(TypeError):
         empty_hash.set({'hello': 'hello'},{'hello': 'hello'})
-
-
-def test_set_accepts_only_matching_key_value_pairs(empty_hash):
-    with pytest.raises(TypeError):
-        empty_hash("doesn't", "match")
 
 
 def test_get_with_huge_hash():

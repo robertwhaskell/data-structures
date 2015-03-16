@@ -9,9 +9,9 @@ class Hash_Table(object):
         found. Raise an error if not.
         '''
         try:
-            for val in self.hash_table[self.hash(key)]:
-                if val == key:
-                    return val
+            for val_tuple in self.hash_table[self.hash(key)]:
+                if val_tuple[0] == key:
+                    return val_tuple[1]
         except KeyError:
             raise KeyError('key does not exist')
         raise KeyError("this key does not have a matching value")
@@ -24,14 +24,11 @@ class Hash_Table(object):
         if type(key) != str:
             raise TypeError('only accepts strings')
 
-        if key != val:
-            raise TypeError('key must equal value')
-
         key_hash = self.hash(key)
         if self.hash_table[key_hash] is None:
-            self.hash_table[key_hash] = [val]
+            self.hash_table[key_hash] = [(key, val)]
         else:
-            self.hash_table[key_hash].append(val)
+            self.hash_table[key_hash].append((key, val))
 
     def hash(self, key):
         '''Return a hashed value for the key'''
