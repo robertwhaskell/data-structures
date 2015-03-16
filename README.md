@@ -30,9 +30,7 @@ This file contains:
     Note - node values must be immutable.
     - Graph traversal resource: http://eddmann.com/posts/depth-first-search-and-breadth-first-search-in-python/
 - Graph shortest path algorithms: Dijkstra's and Bellman-Ford.
-    - Dijkstra's algorithm will find the shortest path between two nodes. Bellman-Ford also does this, but will handle negative edge weights. Use it in graphs that could contain negative weights.
-- Hash Table
-    - A simple hash table. It accepts only strings and places them in buckets based on the hashed value of their key.  
+    - Dijkstra's algorithm will find the shortest path between two nodes. Bellman-Ford also does this, but will handle negative edge weights. Use it in graphs that could contain negative weights.  
     
 Collaborations: Robert Haskell & Nick Draper (coders)
 
@@ -42,6 +40,16 @@ Collaborations: Robert Haskell & Nick Draper (coders)
       - in-order, pre-order, post-order, and breadth-first.  
     - Contains a method to delete nodes.
     - Contains a method to balance the tree
+- Hash Table
+    - A simple hash table. It accepts only strings and places them in buckets based on the hashed value of their key.
+
+Collaborations: Robert Haskell & [Joel Stanner](https://github.com/poolbath1) (coders)
+
+# Sorting Algorithms
+These are a collection of classic sorting algorithms implemented in python  
+
+- Insertion Sort
+    - A method to sort a list of items. [Wikipedia](http://en.wikipedia.org/wiki/Insertion_sort) explains it well.
   
 References: Google, Google, Google, and also Wikipedia  
-Collaborations: Robert Haskell & Joel Stanner (coders)
+Collaborations: Robert Haskell & [Joel Stanner](https://github.com/poolbath1) (coders)
