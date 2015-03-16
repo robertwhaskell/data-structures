@@ -21,6 +21,7 @@ class Hash_Table(object):
         Hash the key, place the value in the hashed bucket. If the bucket
         is not empty, append the value to the list of items in the bucket.
         If the key is duplicate, overwrites previous key.
+        if either the key or the val is not a string, throws an error.
         '''
         if type(key) != str:
             raise TypeError('only accepts strings')

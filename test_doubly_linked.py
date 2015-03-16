@@ -38,8 +38,7 @@ def test_append(pop_list):
 
 
 def test_pop(pop_list):
-    print pop_list.head.val
-    assert pop_list.pop() == False
+    assert pop_list.pop() is False
     assert pop_list.head.val is "Yay"
 
 
@@ -48,8 +47,5 @@ def test_shift(pop_list):
     assert pop_list.tail.val is True
 
 
-#@pytest.mark.xfail(raises=AttributeError)
 def test_remove(pop_list):
     pop_list.remove("Hello")
-    # with pytest.raises(AttributeError):
-    #     pop_list.remove("Hello")

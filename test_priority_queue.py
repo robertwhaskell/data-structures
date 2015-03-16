@@ -34,7 +34,6 @@ def test_order(populated_queue):
     l = []
     for thing in populated_queue.priority_list:
         l.append(thing.val)
-    print l
     assert l == [0, "first_2000", "second_2000", 100, 150, "Hello"]
 
 
