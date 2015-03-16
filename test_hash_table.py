@@ -55,6 +55,11 @@ def test_set_accepts_only_strings(empty_hash):
         empty_hash.set({'hello': 'hello'},{'hello': 'hello'})
 
 
+def test_set_accepts_only_matching_key_value_pairs(empty_hash):
+    with pytest.raises(TypeError):
+        empty_hash("doesn't", "match")
+
+
 def test_get_with_huge_hash():
     h = Hash_Table(1024)
     wordlist = [line.strip() for line in open('/usr/share/dict/words')]

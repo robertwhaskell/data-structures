@@ -14,7 +14,7 @@ class Hash_Table(object):
                     return val
         except KeyError:
             raise KeyError('key does not exist')
-        raise KeyError("I don't know how, but this key has no value")
+        raise KeyError("this key does not have a matching value")
 
     def set(self, key, val):
         '''
@@ -23,6 +23,9 @@ class Hash_Table(object):
         '''
         if type(key) != str:
             raise TypeError('only accepts strings')
+
+        if key != val:
+            raise TypeError('key must equal value')
 
         key_hash = self.hash(key)
         if self.hash_table[key_hash] is None:
