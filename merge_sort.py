@@ -1,4 +1,6 @@
 def merge_sort(unord_list):
+    if len(unord_list) == 0:
+        return unord_list
     return merge_helper(
         unord_list[:(len(unord_list)/2)],
         unord_list[(len(unord_list)/2):]
@@ -18,6 +20,7 @@ def merge_helper(left, right):
         while len(left) > 0 and left[0] < var:
             l.append(left.pop(0))
         l.append(var)
+    l += left
     return l
 
 
