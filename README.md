@@ -20,7 +20,7 @@ This file contains:
     - size checks the length of the queue
 - Doubly-Linked Lists
     - Same deal as a Linked list, except the nodes carry values for the nodes ahead and behind them in the list. Also has methods for adding/removing from both ends of the list.
-    - Doubly linked lists take up a bit more space in memory, but allow for more flexibilty than a singly-linked list. I guess it's a matter of space over speed: singly-linked lists take less space, but more time to perform operations, and the flip is true for doubly-linked lists.
+    - Doubly linked lists take up a bit more space in memory, but allow for more flexibility than a singly-linked list. I guess it's a matter of space over speed: singly-linked lists take less space, but more time to perform operations, and the flip is true for doubly-linked lists.
 - Binary Heap
     - A binary heap where each value in the list has two children that are guaranteed to be less than the node.
     - Resources: 
@@ -49,7 +49,9 @@ Collaborations: Robert Haskell & [Joel Stanner](https://github.com/poolbath1) (c
 These are a collection of classic sorting algorithms implemented in python  
 
 - Insertion Sort
-    - A method to sort a list of items. [Wikipedia](http://en.wikipedia.org/wiki/Insertion_sort) explains it well.
-  
+    - A method to sort a list of items. It builds the final sorted list one item at a time. [Wikipedia](http://en.wikipedia.org/wiki/Insertion_sort) explains it well.
+- Merge Sort
+    - A method to sort a list using a comparison based sorting algorithm. It is designed to be a stable sort. Also referred to as "divide and conquer". [Merge sort wiki.](http://en.wikipedia.org/wiki/Merge_sort)
+
 References: Google, Google, Google, and also Wikipedia  
 Collaborations: Robert Haskell & [Joel Stanner](https://github.com/poolbath1) (coders)
