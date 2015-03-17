@@ -1,13 +1,10 @@
-def insertion_sort(unordered_list):
+def insertion_sort(unord_list):
 
-    for i in range(len(unordered_list)):
-        moving = i
-        while moving > 0 and (unordered_list[moving] < unordered_list[moving - 1]):
-            (unordered_list[moving],
-             unordered_list[moving - 1]) = (unordered_list[moving - 1],
-                                            unordered_list[moving])
-            moving -= 1
-    return unordered_list
+    for i in range(len(unord_list)):
+        while i > 0 and (unord_list[i] < unord_list[i - 1]):
+            unord_list[i], unord_list[i - 1] = unord_list[i - 1], unord_list[i]
+            i -= 1
+    return unord_list
 
 
 if __name__ == "__main__":
