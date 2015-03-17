@@ -8,6 +8,9 @@ def merge_sort(unord_list):
 
 
 def merge_helper(left, right):
+    """A sorting algorithm that splits an unorderd list in half,
+    repeatedly, until it is reduced to individual chunks, then
+    sorts the chunks."""
     if len(right) == 1:
         if len(left) == 1:
             return [min(left[0], right[0]), max(left[0], right[0])]
@@ -48,3 +51,6 @@ if __name__ == "__main__":
         timer = time()
         merge_sort(l)
         return time() - timer
+
+    print "worst case: "+str(worst_case(100000))
+    print "best case: "+str(best_case(100000))
