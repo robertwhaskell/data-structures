@@ -1,5 +1,24 @@
 def merge_sort(unord_list):
-    pass
+    return merge_helper(
+        unord_list[:(len(unord_list)/2)],
+        unord_list[(len(unord_list)/2):]
+        )
+
+
+def merge_helper(left, right):
+    if len(right) == 1:
+        if len(left) == 1:
+            return [min(left[0], right[0]), max(left[0], right[0])]
+        else:
+            return right
+    left = merge_helper(left[:(len(left)/2)], left[(len(left)/2):])
+    right = merge_helper(right[:(len(right)/2)], right[(len(right)/2):])
+    l = []
+    for var in right:
+        while len(left) > 0 and left[0] < var:
+            l.append(left.pop(0))
+        l.append(var)
+    return l
 
 
 if __name__ == "__main__":
