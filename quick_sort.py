@@ -13,10 +13,10 @@ def _quick_sort_helper(array, lo, hi):
 
 
 def _partition(array, lo, hi):
-    pivot_value = array[0]
-    array[0], array[hi] = array[hi], array[0]
+    pivot_value = array[lo]
+    array[lo], array[hi] = array[hi], array[lo]
     stored_index = lo
-    for i in range(len(array)):
+    for i in range(lo, hi + 1):
         if array[i] < pivot_value:
             array[i], array[stored_index] = array[stored_index], array[i]
             stored_index += 1
