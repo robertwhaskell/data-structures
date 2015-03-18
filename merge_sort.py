@@ -1,6 +1,4 @@
 def merge_sort(unord_list):
-    if len(unord_list) == 0:
-        return unord_list
     return merge_helper(
         unord_list[:(len(unord_list)/2)],
         unord_list[(len(unord_list)/2):]
@@ -11,11 +9,12 @@ def merge_helper(left, right):
     """A sorting algorithm that splits an unorderd list in half,
     repeatedly, until it is reduced to individual chunks, then
     sorts the chunks."""
-    if len(right) == 1:
-        if len(left) == 1:
-            return [min(left[0], right[0]), max(left[0], right[0])]
-        else:
-            return right
+    if len(right) == 1 and len(left) == 1:
+        return [min(left[0], right[0]), max(left[0], right[0])]
+
+    if len(right) == 0 or len(left) == 0:
+        return right
+
     left = merge_helper(left[:(len(left)/2)], left[(len(left)/2):])
     right = merge_helper(right[:(len(right)/2)], right[(len(right)/2):])
     l = []
