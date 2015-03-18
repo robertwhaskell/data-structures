@@ -16,8 +16,8 @@ def _partition(array, lo, hi):
     pivot_index = ((lo + hi)/2)
     pivot_value = array[pivot_index]
     array[pivot_index], array[hi] = array[hi], array[pivot_index]
-    stored_index = pivot_index
-    for i in range(pivot_index, hi + 1):
+    stored_index = lo
+    for i in range(lo, hi + 1):
         if array[i] < pivot_value:
             array[i], array[stored_index] = array[stored_index], array[i]
             stored_index += 1
