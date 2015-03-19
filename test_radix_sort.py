@@ -1,4 +1,4 @@
-from radix_sort import radix_sort
+from radix_sort import radix_sort, radix_sort_string
 
 
 def test_radix_sort_on_empty():
@@ -22,4 +22,4 @@ def test_radix_sort_on_reverse_order_list():
 
 
 def test_radix_sort_strings():
-    assert radix_sort(['a', 'd', 'b', 'c']) == ['a', 'b', 'c', 'd']
+    assert radix_sort_string(['a', 'd', 'b', 'c']) == ['a', 'b', 'c', 'd']
