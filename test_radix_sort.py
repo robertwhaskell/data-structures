@@ -23,3 +23,14 @@ def test_radix_sort_on_reverse_order_list():
 
 def test_radix_sort_strings():
     assert radix_sort_string(['a', 'd', 'b', 'c']) == ['a', 'b', 'c', 'd']
+
+
+def test_radix_sort_long_string():
+    assert (radix_sort_string(['Four',
+                               'score',
+                               'and',
+                               'seven',
+                               'years',
+                               'ago']) ==
+        ['Four', 'ago', 'and', 'score', 'seven', 'years'])
+

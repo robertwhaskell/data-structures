@@ -28,24 +28,24 @@ def radix_sort_string(array):
             if len(val) > len(longest):
                 longest = val
 
-    while index_place > len(longest):
+    while index_place < len(longest):
         buckets = [[] for x in range(128)]
         for val in array:
-            index_num = ord(val[index_place])
+            try:
+                index_num = ord(val[index_place])
+            except IndexError:
+                index_num = 0
             buckets[index_num].append(val)
 
         transfer_list = []
         for bucket in buckets:
-            for var in bucket:
-                transfer_list.append(var)
-
+            for i in range(len(bucket)):
+                transfer_list.append(bucket.pop())
         array = transfer_list
         index_place += 1
     return array
 
-
-radix_sort([4, 1, 99])
-
+radix_sort_string(['and', 'ago'])
 
 if __name__ == "__main__":
     pass
