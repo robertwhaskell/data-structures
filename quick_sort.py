@@ -9,7 +9,7 @@ def _quick_sort_helper(array, lo, hi):
         partition = _partition(array, lo, hi)
         _quick_sort_helper(array, lo, (partition - 1))
         _quick_sort_helper(array, (partition + 1), hi)
-
+    return array
 
 def _partition(array, lo, hi):
     pivot_index = ((lo + hi)/2)
