@@ -52,6 +52,10 @@ These are a collection of classic sorting algorithms implemented in python
     - A method to sort a list of items. It builds the final sorted list one item at a time. [Wikipedia](http://en.wikipedia.org/wiki/Insertion_sort) explains it well.
 - Merge Sort
     - A method to sort a list using a comparison based sorting algorithm. It is designed to be a stable sort. Also referred to as "divide and conquer". [Merge sort wiki.](http://en.wikipedia.org/wiki/Merge_sort)
+- Quick Sort
+    - This is also a "divide and conquer" type sort algorithm. It relies on using a 'pivot' to divide the list and sort the sub-arrays recursively. [Quick sort wiki.](http://en.wikipedia.org/wiki/Quicksort)
+- Radix Sort
+    - A method to sort a list of items using integer keys by grouping keys that share the same significant position and value. This can be used to sort numbers or strings of characters and specially formatted floating point numbers. [Radix Sort Wiki](http://en.wikipedia.org/wiki/Radix_sort)
 
 References: Google, Google, Google, and also Wikipedia  
 Collaborations: Robert Haskell & [Joel Stanner](https://github.com/poolbath1) (coders)
