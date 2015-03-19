@@ -1,8 +1,10 @@
 def radix_sort(array):
-    buckets = [[]] * 10
+
     tens_place = 1
     index_num = 0
-    while True:
+    max_val = max(array)
+    while max_val > tens_place:
+        buckets = [[] for x in range(10)]
         for val in array:
             index_num = val % (tens_place * 10) / tens_place
             buckets[index_num].append(val)
@@ -14,7 +16,12 @@ def radix_sort(array):
         if len(transfer_list) == 0:
             break
 
-        array += transfer_list
+        array = transfer_list
+        tens_place *= 10
+    return array
+
+radix_sort([4, 1, 99])
+
 
 if __name__ == "__main__":
     pass
