@@ -41,6 +41,7 @@ if __name__ == "__main__":
             partition = _partition(array, lo, hi)
             _quick_sort_helper(array, lo, (partition - 1))
             _quick_sort_helper(array, (partition + 1), hi)
+        return array
 
     def shitty_partition(array, lo, hi):
         """same as non-shitty partition, but selects lowest index"""
