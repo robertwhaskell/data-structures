@@ -34,3 +34,6 @@ def test_radix_sort_long_string():
                                'ago']) ==
         ['Four', 'ago', 'and', 'score', 'seven', 'years'])
 
+def test_radix_sort_string_empty():
+    assert radix_sort_string([]) == []
+
